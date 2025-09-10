@@ -5,7 +5,6 @@ import {
 } from 'react-router'
 
 import App from './components/App'
-//import Home from './components/Home'
 import ShowPokemon from './components/ShowPokemon'
 import Game1 from './components/Game1'
 
