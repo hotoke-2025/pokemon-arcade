@@ -1,4 +1,7 @@
-import img from '/images/player-sprite-standing-facing-towards.png'
+import spriteDown from '/images/player-sprite-standing-facing-towards.png'
+import spriteUp from '/images/player-sprite-standing-facing-away.png'
+import spriteLeft from '/images/player-sprite-standing-facing-left.png'
+import spriteRight from '/images/player-sprite-standing-facing-right.png'
 interface Sprite {
   x: number
   y: number
@@ -26,19 +29,26 @@ function PlayerSprite ({ position, setPosition }: Props) {
   // const player = usePlayerSprite()
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent arrow keys from scrolling the page:
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault()
+      }
+      // Define step size:
+      const step = 20
+      // Use the arrow keys to adjust the sprite position:
       switch (e.key) {
         case 'ArrowUp':
-          setPosition((prev) => ({ ...prev, y: prev.y - 20 }))
+          setPosition((prev) => ({ ...prev, y: prev.y - step }))
           break
         case 'ArrowDown':
-          setPosition((prev) => ({ ...prev, y: prev.y + 20 }))
+          setPosition((prev) => ({ ...prev, y: prev.y + step }))
           break
         case 'ArrowLeft':
-          setPosition((prev) => ({ ...prev, x: prev.x - 20 }))
+          setPosition((prev) => ({ ...prev, x: prev.x - step }))
           break
         case 'ArrowRight':
-          setPosition((prev) => ({ ...prev, x: prev.x + 20 }))
+          setPosition((prev) => ({ ...prev, x: prev.x + step }))
           break
         default:
           break
@@ -59,7 +69,7 @@ function PlayerSprite ({ position, setPosition }: Props) {
     >
       <img
         alt="img"
-        src={img}
+        src={spriteLeft}
         style={{ width: '150px' }}
         id="player"
       ></img>

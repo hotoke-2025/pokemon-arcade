@@ -1,23 +1,21 @@
-
-//import { usePokemon } from '../hooks/usePokemon.ts'
-import PlayerSprite from './PlayerSprite.tsx'
-import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router'
 
 function App() {
-  // const { data } = usePokemon()
-
-    const [position, setPosition] = useState({ x: 80, y: 140 })
 
   return (
     <>
       <div className="app">
-        <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Pokemon!
-        </h1>
-        {/* <ul>
-          {data && data.map((pokemon) => <li key={pokemon}>{pokemon}</li>)}
-        </ul> */}
-        <PlayerSprite position={position} setPosition={setPosition} />
+        <header>
+          <h1>Pokemon Arcade!</h1>
+          {/* nav bar gets called here */}
+        </header>
+        <main>
+          <h1 className="text-3xl font-bold underline">
+            Pokémon Arcade
+          </h1>
+          <Outlet />
+        </main>
+        <footer> PLACEHOLDER FOOTER </footer>
       </div>
     </>
   )
