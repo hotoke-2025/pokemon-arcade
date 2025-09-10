@@ -1,17 +1,21 @@
-import { usePokemon } from '../hooks/usePokemon.ts'
+import { Outlet } from 'react-router'
 
 function App() {
-  const { data } = usePokemon()
 
   return (
     <>
       <div className="app">
-        <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Pokemon!
-        </h1>
-        <ul>
-          {data && data.map((pokemon) => <li key={pokemon}>{pokemon}</li>)}
-        </ul>
+        <header>
+          <h1>Pokemon Arcade!</h1>
+          {/* nav bar gets called here */}
+        </header>
+        <main>
+          <h1 className="text-3xl font-bold underline">
+            Pokémon Arcade
+          </h1>
+          <Outlet />
+        </main>
+        <footer> PLACEHOLDER FOOTER </footer>
       </div>
     </>
   )
