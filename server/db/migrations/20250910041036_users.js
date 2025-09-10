@@ -6,7 +6,7 @@ export function up(knex) {
   return knex.schema.createTable('users', (table) => {
     table.increments('id').primary()
     table.string('nickname')
-    table.boolean('sprite')
+    table.string('sprite')
   })
 }
 
