@@ -1,8 +1,7 @@
 import request from 'superagent'
+import type { Pokemon } from '../../models/pokemonList.ts'
 
-const rootURL = new URL(`/api/v1`, document.baseURI)
-
-export async function getPokemon(): Promise<string[]> {
-  const response = await request.get(`${rootURL}/pokemon`)
-  return response.body.pokemon as string[]
+export async function fetchPokemonById(id: number) {
+  const res = await request.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  return res.body as Pokemon
 }
