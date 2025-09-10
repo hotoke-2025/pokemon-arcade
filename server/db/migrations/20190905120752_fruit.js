@@ -2,7 +2,7 @@
  * @param {import('knex').Knex} knex
  */
 export async function up(knex) {
-  return knex.schema.createTable('fruit', (table) => {
+  return knex.schema.createTable('pokemon', (table) => {
     table.increments('id')
     table.string('name')
     table.string('owner').defaultTo(null)
@@ -10,5 +10,5 @@ export async function up(knex) {
 }
 
 export async function down(knex) {
-  return knex.schema.dropTable('fruit')
+  return knex.schema.dropTable('pokemon')
 }
