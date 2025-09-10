@@ -6,10 +6,13 @@ import {
 
 import App from './components/App'
 import ShowPokemon from './components/ShowPokemon'
+import Game1 from './components/Game1'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
+    {/* <Route index element={<Home />} /> */}
     <Route path="/:monId" element={<ShowPokemon />} />
+    <Route path="/game-1" element={<Game1 />} />
   </Route>,
 )
 
