@@ -1,8 +1,12 @@
-// import { usePokemon } from '../hooks/usePokemon.ts'
-import { Outlet } from "react-router"
+
+//import { usePokemon } from '../hooks/usePokemon.ts'
+import PlayerSprite from './PlayerSprite.tsx'
+import { useEffect, useState } from 'react'
 
 function App() {
   // const { data } = usePokemon()
+
+    const [position, setPosition] = useState({ x: 80, y: 140 })
 
   return (
     <>
@@ -13,7 +17,7 @@ function App() {
         {/* <ul>
           {data && data.map((pokemon) => <li key={pokemon}>{pokemon}</li>)}
         </ul> */}
-        <Outlet></Outlet>
+        <PlayerSprite position={position} setPosition={setPosition} />
       </div>
     </>
   )
