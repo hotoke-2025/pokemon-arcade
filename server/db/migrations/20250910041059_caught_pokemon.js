@@ -1,0 +1,21 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+export function up(knex) {
+  return knex.schema.createTable('caught_pokemon', (table) => {
+    table.increments('id').primary()
+    table.string('name')
+    table.string('nickname')
+    table.boolean('released')
+    table.integer('user_id').references('users.id')
+  })
+}
+
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+export function down(knex) {
+  return knex.schema.dropTable('caught_pokemon')
+}
