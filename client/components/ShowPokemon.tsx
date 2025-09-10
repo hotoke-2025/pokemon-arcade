@@ -34,25 +34,25 @@ export default function ShowPokemon() {
           </Link>
         </button>
       </div>
+      <h1 className="bg-transparent text-center text-2xl mt-5">
+        A wild pokemon appeared!
+        {/* {' '}
+            {pokemon.name &&
+              pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '} */}
+      </h1>
       <div className="pokemon-container">
         <div className="sprite-and-text">
-          <h1>
-            A wild{' '}
-            {pokemon.name &&
-              pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '}
-            appeared!
-          </h1>
-
           <img
-            className=""
+            className="pokemonSprites"
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
           />
         </div>
       </div>
+      <div className="text-center">
+        <h1 className="bg-transparent text-2xl m-5">Which pokemon is it?</h1>
+        <input></input>
+      </div>
     </>
   )
 }
-  
-
-
