@@ -1,10 +1,11 @@
 import PokemonNav from './NavPokemon.tsx'
 import { Link } from 'react-router'
-import { usePokemon } from '../hooks/usePokemon.ts'
+import useArcade from '../hooks/useArcade.ts'
+
 // import LoadingIndicator from './LoadingIndicator.tsx'
 
 export default function ArcadeList() {
-  const { isPending, isError, data } = usePokemon()
+  const { isPending, isError, data } = useArcade()
 
   if (isPending) {
     return (
@@ -24,12 +25,12 @@ export default function ArcadeList() {
       <PokemonNav />
       <h2>Games:</h2>
       <ul className="cards">
-        {data?.arcade.map((data) => (
-          <li key={data.id} className="card">
+        {data?.arcade.map((arcade) => (
+          <li key={arcade.id} className="card">
             <div className="location">
-              <span className="title">{data.name}</span>
-              <p className="data">{data.description}</p>
-              <Link to={`/pokemon/${data.id}/edit`}>edit pokemon</Link>
+              <span className="title">{arcade.name}</span>
+              <p className="data">{arcade.description}</p>
+              <Link to={`/pokemon/${arcade.id}/edit`}>edit pokemon</Link>
             </div>
           </li>
         ))}
