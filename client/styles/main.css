@@ -42,9 +42,26 @@ p {
 }
 
 h1 {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  border: 7px solid #3573bd;
+  border-radius: 15px;
+  /* width: auto;
+  height: auto; */
+  padding: 10px;
 }
 
+.links {
+  background-color: rgb(242, 230, 173);
+  border: 7px solid #3573bd;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.active {
+  color: rgb(169, 26, 26);
+}
 .pokemon-container {
   width: auto;
   height: auto;

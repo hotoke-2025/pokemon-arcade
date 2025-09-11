@@ -11,13 +11,18 @@ function App() {
             alt="pokemon arcade"
             className="mx-auto h-auto max-w-md"
           ></img>
-          <NavPokemon />
         </h1>
+        <h3 className="links">
+          <NavPokemon />
+        </h3>
         <main>
           {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
         </main>
-        <footer className='text-center'> © There&apos;s no shaymin losing! </footer>
+        <footer className="text-center">
+          {' '}
+          © There&apos;s no shaymin losing!{' '}
+        </footer>
       </div>
     </>
   )
