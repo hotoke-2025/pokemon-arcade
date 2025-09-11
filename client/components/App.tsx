@@ -1,18 +1,20 @@
 import { Outlet } from 'react-router'
+import ArcadeList from './NavArcade'
 
 function App() {
-
   return (
     <>
-      <div className="app">
-        <header>
-          <h1>Pokemon Arcade!</h1>
-          {/* nav bar gets called here */}
-        </header>
+      <div className="mx-auto h-auto max-w-md ">
+        <h1>
+          <img
+            src="../public/images/pokemonarcadelogo.png"
+            alt="pokemon arcade"
+            className="mx-auto h-auto max-w-md"
+          ></img>
+          <ArcadeList />
+        </h1>
         <main>
-          <h1 className="text-3xl font-bold underline">
-            Pokémon Arcade
-          </h1>
+          {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
         </main>
         <footer> PLACEHOLDER FOOTER </footer>
