@@ -10,10 +10,13 @@ import Game1 from './components/Game1'
 import CaughtPokemon from './components/CaughtPokemon'
 import UncaughtPokemon from './components/UncaughtPokemon'
 import Game2 from './components/Game2'
+import Game3 from './components/Game3'
+
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     {/* <Route index element={<Home />} /> */}
+    <Route path="/game-3" element={<Game3 />} />
     <Route path="/game-2" element={<Game2 />} />
     <Route path="/game-2/:monId" element={<ShowPokemon />} />
     <Route path="/game-2/caughtpokemon/:monId" element={<CaughtPokemon />} />

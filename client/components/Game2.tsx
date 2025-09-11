@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 
-function Game1() {
+function Game2() {
   function getRandomMonId(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
@@ -15,4 +15,4 @@ function Game1() {
   )
 }
 
-export default Game1
+export default Game2
