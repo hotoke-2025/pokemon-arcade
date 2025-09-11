@@ -12,7 +12,7 @@ function App() {
             className="mx-auto h-auto max-w-md"
           ></img>
         </h1>
-        <h3 className="links">
+        <h3 className="links" id="pixelify-sans">
           <NavPokemon />
         </h3>
         <main>

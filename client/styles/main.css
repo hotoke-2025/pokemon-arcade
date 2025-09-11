@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* disables scrolling */
+}
+
 #backBtn {
   background-color: white;
   /* colour of button background */
@@ -15,6 +22,12 @@
   padding: 10px 10px;
 }
 
+#pixelify-sans {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 @media only screen and (max-width: 480pxx) {
   button {
     width: 80%;
@@ -62,6 +75,7 @@ h1 {
 .active {
   color: rgb(169, 26, 26);
 }
+
 .pokemon-container {
   width: auto;
   height: auto;

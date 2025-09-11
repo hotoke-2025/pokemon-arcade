@@ -5,8 +5,8 @@ export default function Navbar() {
     <nav>
       <NavLink to="/home">Home</NavLink>
       <NavLink to="/game-1/"> Game 1 </NavLink>
-      <NavLink to="/game-2/"> Whos that Pokemon! </NavLink>
-      <NavLink to="/game-3/"> Tick-Tack-Jotoh </NavLink>
+      <NavLink to="/game-2/"> Who&apos;s that Pokemon! </NavLink>
+      <NavLink to="/game-3/"> Tic-Tac-Johto </NavLink>
       {/* <NavLink className="nav" to="/arcade">
         view games
       </NavLink> */}
