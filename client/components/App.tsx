@@ -7,7 +7,7 @@ function App() {
       <div className="mx-auto h-auto max-w-md ">
         <h1>
           <img
-            src="../public/images/pokemonarcadelogo.png"
+            src="/images/pokemonarcadelogo.png"
             alt="pokemon arcade"
             className="mx-auto h-auto max-w-md"
           ></img>

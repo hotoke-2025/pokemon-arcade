@@ -85,13 +85,13 @@ export default function Game3() {
                   >
                     {options[index] === 'X' && (
                       <img
-                        src="images/X-Unown.webp"
+                        src="/images/X-Unown.webp"
                         alt="X"
                       />
                     )}
                     {options[index] === 'O' && (
                       <img
-                        src="images/O-Unown.webp"
+                        src="/images/O-Unown.webp"
                         alt="O"
                       />
                     )}
