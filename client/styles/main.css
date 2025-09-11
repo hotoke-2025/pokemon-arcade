@@ -85,5 +85,5 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }

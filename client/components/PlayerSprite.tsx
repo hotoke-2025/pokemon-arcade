@@ -28,7 +28,7 @@ interface Props {
   setPosition: React.Dispatch<React.SetStateAction<Sprite>>
 }
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 // Use this when the player sprite changes appearance based on gender selection in the "user" table in the database
 // import { User } from '../../models/models'
@@ -41,15 +41,23 @@ function PlayerSprite({ position, setPosition }: Props) {
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>(
     'down',
   )
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const [bounds, setBounds] = useState({ width: 0, height: 0 })
+
 
   useEffect(() => {
-    const maxX = window.innerWidth - spriteWidthNum
-    const maxY = window.innerHeight - spriteWidthNum
+    const maxX = bounds.width - spriteWidthNum
+    const maxY = bounds.width - spriteWidthNum
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent arrow keys from scrolling the page:
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault()
       }
+
+        if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect()
+      setBounds({ width: rect.width, height: rect.height })
+    }
 
       // Use the arrow keys to adjust the sprite position:
       setPosition((prev) => {
