@@ -19,7 +19,7 @@
 }
 
 @media only screen and (max-width: 480pxx) {
-button {
+  button {
     width: 80%;
   }
 }
@@ -41,7 +41,6 @@ p {
   font-size: 1.252rem;
   color: #003f8b;
   text-shadow: 2px 2px 4px rgb(255, 255, 255);
-  
 }
 
 h1 {
@@ -59,8 +58,7 @@ h1 {
 }
 
 .sprite-and-text {
-
-   width: auto;
+  width: auto;
   height: auto;
   max-width: 300px;
   margin: auto;
@@ -75,4 +73,17 @@ body {
   background-size: cover;
   background-position: center;
   background-color: #fbcb2a;
+}
+
+.poke-map {
+  position: relative;
+  width: 95vw;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
+  margin: 40px auto;
+  background-image: url('/images/PokeMap.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
 }

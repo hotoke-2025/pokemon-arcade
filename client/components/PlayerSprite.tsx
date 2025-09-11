@@ -15,7 +15,7 @@ const sprites = {
 // Add the equivalent images for female player and change sprite images based on backend "user" data
 
 // Define step and sprite sizes:
-const spriteWidth = '50px'
+const spriteWidth = '22.5px'
 const step = 20
 interface Sprite {
   x: number
