@@ -32,12 +32,12 @@ export default function ShowPokemon() {
 
   const handleSubmit = () => {
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
-      navigate('/')
+      navigate(`/game-2/caughtpokemon/${monId}`)
     } else {
-      navigate('/error')
+      navigate(`/game-2/uncaughtpokemon/${monId}`)
     }
   }
-
+  console.log(pokemon.name)
   return (
     <>
         <button>
@@ -46,7 +46,7 @@ export default function ShowPokemon() {
           </Link>
         </button>
       <h1 className="bg-transparent text-center text-2xl mt-5">
-        You found a wild pokemon!
+        A wild pokemon has appeared!
       </h1>
       <div className="pokemon-container">
         <div className="sprite-and-text">
@@ -58,10 +58,11 @@ export default function ShowPokemon() {
         </div>
       </div>
       <div className="text-center">
-        <h1 className="bg-transparent text-2xl m-5">Which pokemon is it?</h1>
+        <h1 className="bg-transparent text-2xl m-5">Which pokemon is it? </h1>
         <input
+          className="text-center rounded-2xl p-1"
           type="text"
-          placeholder="Pikachu"
+          placeholder="eg. Pikachu"
           name="pokemon"
           value={hiddenPokemon}
           onChange={handleInputChange}
