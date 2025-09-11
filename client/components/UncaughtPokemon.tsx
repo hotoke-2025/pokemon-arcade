@@ -1,0 +1,48 @@
+import { Link } from 'react-router'
+import { fetchPokemonById } from '../apis/pokemon'
+import { useParams } from 'react-router'
+import { useQuery } from '@tanstack/react-query'
+
+
+export default function CaughtPokemon() {
+  const {monId} = useParams()
+  const {
+    data: pokemon,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['pokemon', monId],
+    queryFn: () => fetchPokemonById(Number(monId)),
+  })
+
+  if (isPending) {
+    return <>Loading...</>
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
+
+  return (
+     <>
+      <button>
+        <Link id="backBtn" to={'/game-2'}>
+          ← Guess another pokemon
+        </Link>
+      </button>
+      <h1 className="bg-transparent text-center text-2xl mt-5">
+        Oh no! The wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} has fled!
+      </h1>
+      <div className='uncaughtSpriteBackground'>
+        <div className="uncaughtSprite">
+          <img
+          className='h-3vw'
+            src={pokemon.sprites.front_default}
+            alt={`Front Default Sprite for ${pokemon.name}`}
+          />
+        </div>
+      </div>
+    </>
+  )
+}

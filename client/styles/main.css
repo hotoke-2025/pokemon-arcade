@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 #backBtn {
   background-color: white;
@@ -41,6 +38,7 @@ p {
   font-size: 1.252rem;
   color: #003f8b;
   text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  text-align: center;
 }
 
 h1 {
@@ -54,7 +52,7 @@ h1 {
   margin: auto;
   margin-top: 50px;
   padding: 50px;
-  background-image: url(../../CatchPokemonBackground.png);
+  background-image: url(/images/CatchPokemonBackground.png);
 }
 
 .sprite-and-text {
@@ -86,4 +84,27 @@ body {
   background-position: center;
   border-radius: 8px;
   /* overflow: hidden; */
+}
+.caughtSprite {
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
+.uncaughtSprite {
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+  filter: brightness(50%);
+}
+
+.uncaughtSpriteBackground {
+  background: url(/images/Fled.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
 }
