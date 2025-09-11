@@ -7,9 +7,9 @@ const rootURL = new URL(`/api/v1`, document.baseURI)
 
 export default function useArcade() {
   return useQuery({
-    queryKey: ['arcades'],
+    queryKey: ['arcade'],
     queryFn: async () => {
-      const res = await request.get(`${rootURL}/arcades`)
+      const res = await request.get(`${rootURL}/arcade`)
       if (res.ok) {
         return res.body as { arcade: Arcade[] }
       }

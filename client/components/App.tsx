@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router'
-import ArcadeList from './NavArcade'
+import NavPokemon from './NavPokemon'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
             alt="pokemon arcade"
             className="mx-auto h-auto max-w-md"
           ></img>
-          <ArcadeList />
+          <NavPokemon />
         </h1>
         <main>
           {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}

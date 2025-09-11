@@ -22,7 +22,7 @@ export default function ArcadeList() {
 
   return (
     <>
-      <PokemonNav />
+      {/* <PokemonNav /> */}
       <h2>Games:</h2>
       <ul className="cards">
         {data?.arcade.map((arcade) => (
