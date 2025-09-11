@@ -15,8 +15,9 @@ const sprites = {
 // Add the equivalent images for female player and change sprite images based on backend "user" data
 
 // Define step and sprite sizes:
-const spriteWidth = '22.5px'
-const step = 20
+const spriteWidthNum: number = 22.5 // number, for clamping math
+const spriteWidthCss: string = `${spriteWidthNum}px` // string, for CSS
+const step: number = 20
 interface Sprite {
   x: number
   y: number
@@ -24,12 +25,7 @@ interface Sprite {
 
 interface Props {
   position: Sprite
-  setPosition: (position: Sprite | ((prev: any) => any)) => React.Dispatch<
-    React.SetStateAction<{
-      x: number
-      y: number
-    }>
-  >
+  setPosition: React.Dispatch<React.SetStateAction<Sprite>>
 }
 
 import { useEffect, useState } from 'react'
@@ -47,6 +43,8 @@ function PlayerSprite({ position, setPosition }: Props) {
   )
 
   useEffect(() => {
+    const maxX = window.innerWidth - spriteWidthNum
+    const maxY = window.innerHeight - spriteWidthNum
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent arrow keys from scrolling the page:
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
@@ -54,31 +52,42 @@ function PlayerSprite({ position, setPosition }: Props) {
       }
 
       // Use the arrow keys to adjust the sprite position:
-      switch (e.key) {
-        case 'ArrowUp':
-          setPosition((prev) => ({ ...prev, y: prev.y - step }))
-          setDirection('up')
-          break
-        case 'ArrowDown':
-          setPosition((prev) => ({ ...prev, y: prev.y + step }))
-          setDirection('down')
-          break
-        case 'ArrowLeft':
-          setPosition((prev) => ({ ...prev, x: prev.x - step }))
-          setDirection('left')
-          break
-        case 'ArrowRight':
-          setPosition((prev) => ({ ...prev, x: prev.x + step }))
-          setDirection('right')
-          break
-        default:
-          break
-      }
+      setPosition((prev) => {
+        let newX = prev.x
+        let newY = prev.y
+
+        switch (e.key) {
+          case 'ArrowUp':
+            newY -= step
+            setDirection('up')
+            break
+          case 'ArrowDown':
+            newY += step
+            setDirection('down')
+            break
+          case 'ArrowLeft':
+            newX -= step
+            setDirection('left')
+            break
+          case 'ArrowRight':
+            newX += step
+            setDirection('right')
+            break
+          default:
+            break
+        }
+
+        // Clamp to screen boundaries
+        return {
+          x: Math.min(Math.max(newX, 0), maxX),
+          y: Math.min(Math.max(newY, 0), maxY),
+        }
+      })
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
+  }, [setPosition])
 
   return (
     <div
@@ -89,11 +98,11 @@ function PlayerSprite({ position, setPosition }: Props) {
       }}
     >
       <img
-        alt="img"
+        alt="player"
         src={sprites[direction]}
-        style={{ width: spriteWidth }}
+        style={{ width: spriteWidthCss }}
         id="player"
-      ></img>
+      />
     </div>
   )
 }

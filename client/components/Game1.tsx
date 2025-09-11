@@ -3,6 +3,16 @@
 import PlayerSprite from './PlayerSprite.tsx'
 import { useState } from 'react'
 
+// boundaries suss
+// use abe's code (but without images) to specify points on screen (within boundaires) that trigger a console.log()
+// change to randomly generated
+// possibly resize step/sprite/background so that it conforms to grid 
+// change console.log() to link to battle scene
+
+// can run, which takes back to original screen (/game-1)
+// can catch
+// stretch - can battle
+
 function Game1() {
   function getRandomMonId(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min
