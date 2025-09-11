@@ -1,17 +1,13 @@
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
-// import { useState } from 'react'
+import { useState } from 'react'
 
 export default function ShowPokemon() {
   const { monId } = useParams()
-
-  // const [hiddenPokemon, setHiddenPokemon] = useState('')
-
-  //  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setHiddenPokemon(e.target.value)
-  // }
+  const navigate = useNavigate()
+  const [hiddenPokemon, setHiddenPokemon] = useState('')
 
   const {
     data: pokemon,
@@ -30,17 +26,25 @@ export default function ShowPokemon() {
   if (isError) {
     return <span>Error: {error.message}</span>
   }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHiddenPokemon(e.target.value)
+  }
 
-  console.log(pokemon)
+  const handleSubmit = () => {
+    if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
+      navigate('/')
+    } else {
+      navigate('/error')
+    }
+  }
+
   return (
     <>
-      <div>
         <button>
           <Link id="backBtn" to={'/'}>
             ← Home
           </Link>
         </button>
-      </div>
       <h1 className="bg-transparent text-center text-2xl mt-5">
         You found a wild pokemon!
       </h1>
@@ -59,16 +63,14 @@ export default function ShowPokemon() {
           type="text"
           placeholder="Pikachu"
           name="pokemon"
-          // value={hiddenPokemon}
-          // onChange={handleInputChange}
+          value={hiddenPokemon}
+          onChange={handleInputChange}
         ></input>
         <br/>
-        <button className='m-5 p-1 bg-white rounded-xl'>
-          {/* {if(hiddenPokemon == ){
-            <Link to={'/'}>
+        <button 
+          onClick={handleSubmit}
+          className='m-5 p-1 bg-white rounded-xl'>
             Submit
-            </Link>
-          }} */}
         </button>
       </div>
     </>
