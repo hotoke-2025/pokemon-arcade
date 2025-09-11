@@ -17,7 +17,7 @@ function App() {
           {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
         </main>
-        <footer> PLACEHOLDER FOOTER </footer>
+        <footer className='text-center'> © There&apos;s no shaymin losing! </footer>
       </div>
     </>
   )
