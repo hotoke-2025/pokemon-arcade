@@ -9,6 +9,15 @@ body {
   overflow-y: auto; /* disables scrolling */
 }
 
+.audio {
+  position: absolute;
+  left: 5px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #fbcb2a !important;
+}
+
 #backBtn {
   background-color: white;
   /* colour of button background */

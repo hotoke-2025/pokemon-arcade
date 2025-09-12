@@ -1,10 +1,13 @@
 import { Outlet } from 'react-router'
 import NavPokemon from './NavPokemon'
-
+import Audio from './Audio'
 function App() {
   return (
     <>
       <div className="mx-auto h-auto max-w-md ">
+        <div className="audio">
+          <Audio/>
+        </div>
         <h1>
           <img
             src="/images/pokemonarcadelogo.png"
