@@ -8,7 +8,11 @@ function Game2() {
 
   return (
     <div>
-      <p>Click to search for Pokémon</p>
+      <br></br>
+      <h2>Who's that Pokémon?</h2>
+      <br></br>
+      <p>Click to start guessing!</p>
+      <br></br>
       <Link to={`/game-2/${monId}`}><img className="mx-auto" src="/images/Kanto-Pokemon.webp" alt="Collection of Kanto Pokemon" /></Link>
     </div>
   )
