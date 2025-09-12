@@ -9,7 +9,6 @@ function Game2() {
   return (
     <div>
       <p>Click to search for Pokémon</p>
-
       <Link to={`/game-2/${monId}`}><img className="mx-auto" src="/images/Kanto-Pokemon.webp" alt="Collection of Kanto Pokemon" /></Link>
     </div>
   )
