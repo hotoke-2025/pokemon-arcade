@@ -25,7 +25,8 @@ body {
 #pixelify-sans {
   font-family: 'Pixelify Sans', sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: small;
   font-style: normal;
 }
 @media only screen and (max-width: 480pxx) {
@@ -58,18 +59,33 @@ h1 {
   /* background-color: aliceblue; */
   border: 7px solid #3573bd;
   border-radius: 15px;
+  margin: 10px;
   /* width: auto;
   height: auto; */
   padding: 10px;
 }
 
 .links {
-  background-color: rgb(242, 230, 173);
-  border: 7px solid #3573bd;
+  /* background-color: rgb(255, 246, 200); */
+  /* border: 3.5px solid #3573bd; */
   border-radius: 10px;
-  padding: 5px;
+  padding: 7px;
+  word-spacing: 5px;
   margin-top: 10px;
   text-align: center;
+}
+
+.navButtons {
+  border: 2px solid #003f8b;
+  border-radius: 5px;
+  padding: 2.5px;
+  width: 10;
+  height: 10;
+  margin-left: 5px;
+}
+
+.navButtons:hover {
+  background-color: yellow;
 }
 
 .active {
