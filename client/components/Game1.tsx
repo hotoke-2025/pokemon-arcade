@@ -1,5 +1,6 @@
 import PlayerSprite from './PlayerSprite.tsx'
-import { useRef, useState } from 'react'
+import Mons from './WildMonsGenerator.tsx'
+import { useEffect, useRef, useState } from 'react'
 
 // boundaries suss
 // use abe's code (but without images) to specify points on screen (within boundaires) that trigger a console.log()
@@ -11,9 +12,47 @@ import { useRef, useState } from 'react'
 // can catch
 // stretch - can battle
 
+function generateRandomMons(
+  count: number,
+  mapWidth: number,
+  mapHeight: number,
+) {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i + 1,
+    top: Math.floor(Math.random() * (mapHeight - 50)), // 50px padding so it doesn’t overflow
+    left: Math.floor(Math.random() * (mapWidth - 50)),
+  }))
+}
+
 function Game1() {
   const [position, setPosition] = useState({ x: 80, y: 140 })
+  const [mons, setMons] = useState<Mon[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
+
+  // Generate random mon locations when map loads:
+  useEffect(() => {
+    if (containerRef.current) {
+      const mapWidth = containerRef.current.offsetWidth
+      const mapHeight = containerRef.current.offsetHeight
+      const randomMons = generateRandomMons(10, mapWidth, mapHeight)
+      setMons(randomMons)
+    }
+  }, [containerRef])
+
+  useEffect(() => {
+    mons.forEach((mon, i) => {
+      if (
+        position.x + 50 > mon.left &&
+        position.x + 50 <= mon.left + 40 &&
+        position.y + 50 > mon.top &&
+        position.y + 50 <= mon.top + 40
+      ) {
+        const current = [...mons]
+        current.splice(i, 1) // remove mon when caught
+        setMons(current)
+      }
+    })
+  }, [position, mons])
 
   return (
     <div>
@@ -25,6 +64,7 @@ function Game1() {
           setPosition={setPosition}
           containerRef={containerRef}
         />
+        <Mons mons={mons} setMons={setMons} />
       </div>
     </div>
   )
