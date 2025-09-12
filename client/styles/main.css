@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* disables scrolling */
+}
+
 #backBtn {
   background-color: white;
   /* colour of button background */
@@ -15,6 +22,13 @@
   padding: 10px 10px;
 }
 
+#pixelify-sans {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: small;
+  font-style: normal;
+}
 @media only screen and (max-width: 480pxx) {
   button {
     width: 80%;
@@ -42,7 +56,40 @@ p {
 }
 
 h1 {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  border: 7px solid #3573bd;
+  border-radius: 15px;
+  margin: 10px;
+  /* width: auto;
+  height: auto; */
+  padding: 10px;
+}
+
+.links {
+  /* background-color: rgb(255, 246, 200); */
+  /* border: 3.5px solid #3573bd; */
+  border-radius: 10px;
+  padding: 7px;
+  word-spacing: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.navButtons {
+  border: 2px solid #003f8b;
+  border-radius: 5px;
+  padding: 2.5px;
+  width: 10;
+  height: 10;
+  margin-left: 5px;
+}
+
+.navButtons:hover {
+  background-color: yellow;
+}
+
+.active {
+  color: rgb(169, 26, 26);
 }
 
 .pokemon-container {

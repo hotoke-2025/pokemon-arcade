@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //     audience: '',
     //   }}
     // >
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools />
+    </QueryClientProvider>,
     // </Auth0Provider>,
   )
 })
