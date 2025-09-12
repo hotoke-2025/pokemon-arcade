@@ -68,6 +68,16 @@ export default function ShowPokemon() {
           className='m-5 p-1 bg-white rounded-xl'>
             Submit
         </button>
+        <br></br>
+        <button
+  onClick={() => {
+    const monId = Math.floor(Math.random() * 1025) + 1
+    window.location.href = `/game-2/${monId}`
+  }}
+  className="bg-white border border-black rounded-full px-4 py-2 text-sm mx-auto block w-fit"
+>
+  PASS
+</button>
       </div>
     </>
   )
