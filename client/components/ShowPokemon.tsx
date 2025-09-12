@@ -40,13 +40,8 @@ export default function ShowPokemon() {
   console.log(pokemon.name)
   return (
     <>
-        <button>
-          <Link id="backBtn" to={'/'}>
-            ← Home
-          </Link>
-        </button>
       <h1 className="bg-transparent text-center text-2xl mt-5">
-        A wild pokemon has appeared!
+        A wild Pokémon has appeared...
       </h1>
       <div className="pokemon-container">
         <div className="sprite-and-text">
@@ -58,7 +53,7 @@ export default function ShowPokemon() {
         </div>
       </div>
       <div className="text-center">
-        <h1 className="bg-transparent text-2xl m-5">Which pokemon is it? </h1>
+        <h1 className="bg-transparent text-2xl m-5">Quick! Guess correctly to catch it! </h1>
         <input
           className="text-center rounded-2xl p-1"
           type="text"

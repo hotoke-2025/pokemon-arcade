@@ -26,14 +26,24 @@ export default function CaughtPokemon() {
 
   return (
      <>
-      <button>
-        <Link id="backBtn" to={'/game-2'}>
-          ← Guess another pokemon
-        </Link>
-      </button>
+     <br></br>
+      <button
+  onClick={() => {
+    const monId = Math.floor(Math.random() * 1025) + 1
+    window.location.href = `/game-2/${monId}`
+  }}
+  className="bg-white border border-black rounded-full px-4 py-2 text-sm mx-auto block w-fit"
+>
+  Keep Playing
+</button>
       <h1 className="bg-transparent text-center text-2xl mt-5">
-        Oh no! The wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} has fled!
-      </h1>
+  Oh no, not quite! The wild{' '}
+  <span className="font-bold italic">
+    {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+  </span>{' '}
+  has fled!
+</h1>
+<br></br>
       <div className='uncaughtSpriteBackground'>
         <div className="uncaughtSprite">
           <img

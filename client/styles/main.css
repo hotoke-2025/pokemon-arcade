@@ -6,7 +6,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* disables scrolling */
+  overflow-y: auto; /* disables scrolling */
 }
 
 #backBtn {
@@ -63,6 +63,14 @@ h1 {
   /* width: auto;
   height: auto; */
   padding: 10px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #003f8b;
+  text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  text-align: center;
 }
 
 .links {
