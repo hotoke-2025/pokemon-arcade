@@ -1,5 +1,6 @@
 // import { Link } from 'react-router'
 // import MyAudioPlayer from './Audio.tsx'
+import { BattleScene } from './BattleScene.tsx'
 import PlayerSprite from './PlayerSprite.tsx'
 import { useState } from 'react'
 
@@ -13,6 +14,7 @@ function Game1() {
     <div>
       {/* <MyAudioPlayer /> */}
       <PlayerSprite position={position} setPosition={setPosition} />
+
       <p>Move the sprite to search for Pokémon</p>
 
       <img className="mx-auto" src="/images/PokeMap.png" alt="PokéMap" />
