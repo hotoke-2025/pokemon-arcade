@@ -1,28 +1,28 @@
 import { createRoot } from 'react-dom/client'
+import { Auth0Provider } from '@auth0/auth0-react'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { RouterProvider } from 'react-router/dom'
-//import { createBrowserRouter } from 'react-router'
-import router from './routes.tsx'
-//import { Auth0Provider } from '@auth0/auth0-react'
+import { routes } from './routes.tsx'
 
-//const router = createBrowserRouter(routes)
+
 const queryClient = new QueryClient()
+const router = createBrowserRouter(routes)
 
-document.addEventListener('DOMContentLoaded', () => {
-  createRoot(document.getElementById('app') as HTMLElement).render(
-    // <Auth0Provider
-    //   domain=""
-    //   clientId=""
-    //   authorizationParams={{
-    //     redirect_uri: window.location.origin,
-    //     audience: '',
-    //   }}
-    // >
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    // </Auth0Provider>,
-  )
-})
+const root = createRoot(document.getElementById('app') as HTMLElement)
+
+root.render(
+  <Auth0Provider
+    domain="mako-nixon-25.au.auth0.com"
+    clientId="68c736a74f6a4d9b5e15127a"
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+      audience: "https://pokemon-arcade/api"
+    }}
+  >
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  </Auth0Provider>,
+)

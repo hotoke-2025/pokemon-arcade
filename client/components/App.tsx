@@ -1,26 +1,22 @@
+import AuthButtons from './components/AuthButtons';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Game1 from './components/Game1';
+// import other game components as needed
 
-//import { usePokemon } from '../hooks/usePokemon.ts'
-import PlayerSprite from './PlayerSprite.tsx'
-import { useEffect, useState } from 'react'
-
-function App() {
-  // const { data } = usePokemon()
-
-    const [position, setPosition] = useState({ x: 80, y: 140 })
-
+export default function App() {
   return (
-    <>
-      <div className="app">
-        <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Pokemon!
-        </h1>
-        {/* <ul>
-          {data && data.map((pokemon) => <li key={pokemon}>{pokemon}</li>)}
-        </ul> */}
-        <PlayerSprite position={position} setPosition={setPosition} />
-      </div>
-    </>
-  )
-}
+    <div>
+      <header>
+        <h1>Pokémon Games</h1>
+        <AuthButtons />  {/* Buttons appear in header */}
+      </header>
 
-export default App
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/game-1" element={<Game1 />} />
+        {/* other routes */}
+      </Routes>
+    </div>
+  );
+}

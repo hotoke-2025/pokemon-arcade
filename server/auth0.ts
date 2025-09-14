@@ -4,9 +4,8 @@ import { ParamsDictionary } from 'express-serve-static-core'
 import { JwtPayload } from 'jsonwebtoken'
 import jwks from 'jwks-rsa'
 
-// TODO: set the domain and audience (API Identifier)
-const domain = 'https://'
-const audience = 'https://'
+const domain = 'https://mako-nixon-25.au.auth0.com'
+const audience = ''  // 👈 must match what you put in index.tsx
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({
