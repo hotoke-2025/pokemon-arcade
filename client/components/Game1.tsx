@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from "react-router"
 
 
-// Change link
 // resize step/sprite/background so that it conforms to grid
 // Clean code, add comments
 // Pull request
@@ -23,7 +22,7 @@ function generateRandomMons(
 }
 
 function Game1() {
-  const [position, setPosition] = useState({ x: 80, y: 140 })
+  const [position, setPosition] = useState({ x: 385, y: 240 })
   const [mons, setMons] = useState<Mon[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate() // for collision detection 
@@ -33,7 +32,7 @@ function Game1() {
     if (containerRef.current) {
       const mapWidth = containerRef.current.offsetWidth
       const mapHeight = containerRef.current.offsetHeight
-      const randomMons = generateRandomMons(30, mapWidth, mapHeight)
+      const randomMons = generateRandomMons(20, mapWidth, mapHeight)
       setMons(randomMons)
     }
   }, [containerRef])

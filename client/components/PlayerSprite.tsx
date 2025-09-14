@@ -18,9 +18,9 @@ const sprites = {
 // Add the equivalent images for female player and change sprite images based on backend "user" data
 
 // Define step and sprite sizes:
+const GRID_SIZE = 15
 const spriteWidthNum: number = 22.5 // for clamping math
 const spriteWidthCss: string = `${spriteWidthNum}px` // for CSS
-const step: number = 20
 
 interface Sprite {
   x: number
@@ -62,19 +62,19 @@ function PlayerSprite({ position, setPosition, containerRef }: Props) {
 
         switch (e.key) {
           case 'ArrowUp':
-            newY -= step
+            newY -= GRID_SIZE
             setDirection('up')
             break
           case 'ArrowDown':
-            newY += step
+            newY += GRID_SIZE
             setDirection('down')
             break
           case 'ArrowLeft':
-            newX -= step
+            newX -= GRID_SIZE
             setDirection('left')
             break
           case 'ArrowRight':
-            newX += step
+            newX += GRID_SIZE
             setDirection('right')
             break
         }
