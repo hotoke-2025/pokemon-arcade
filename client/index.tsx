@@ -14,7 +14,7 @@ const root = createRoot(document.getElementById('app') as HTMLElement)
 root.render(
   <Auth0Provider
     domain="mako-nixon-25.au.auth0.com"
-    clientId="68c736a74f6a4d9b5e15127a"
+    clientId="uhu7X6fXsJnSduCjchoU8NuAOPCk0VY6"
     authorizationParams={{
       redirect_uri: window.location.origin,
       audience: "https://pokemon-arcade/api"
