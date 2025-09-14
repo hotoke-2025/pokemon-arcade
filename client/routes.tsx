@@ -12,6 +12,7 @@ import UncaughtPokemon from './components/UncaughtPokemon'
 import Game2 from './components/Game2'
 import Game3 from './components/Game3'
 import Home from './components/Home'
+import BattleScene from './components/BattleScene'
 
 
 const routes = createRoutesFromElements(
@@ -23,6 +24,7 @@ const routes = createRoutesFromElements(
     <Route path="/game-2/caughtpokemon/:monId" element={<CaughtPokemon />} />
     <Route path="/game-2/uncaughtpokemon/:monId" element={<UncaughtPokemon />} />
     <Route path="/game-1" element={<Game1 />} />
+    <Route path="/game-1/:monId" element={<BattleScene />} />
   </Route>,
 )
 

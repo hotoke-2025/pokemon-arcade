@@ -19,7 +19,7 @@ export function BattleScene() {
   //battle
   //damage
   //const health boolean is alive or notAlive
-  // const isAlive = true
+  const isAlive = true
 
   //notAlive= explosion, back to map on click
 
@@ -31,9 +31,9 @@ export function BattleScene() {
           Run Away{' '}
         </Link>
       </button>
-      {/* <button id="fightBtn" isAlive="false">
+      <button id="fightBtn" isAlive="false">
         Fight!
-      </button> */}
+      </button>
     </>
   )
 }
