@@ -6,7 +6,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  overflow-y: auto; /* disables scrolling */
+  overflow-y: auto;
 }
 
 .audio {
@@ -161,4 +161,9 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
+}
+
+.appearedText {
+  border: 2px solid black;
+  border-radius: 8px;  
 }
