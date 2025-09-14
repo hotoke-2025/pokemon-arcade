@@ -2,15 +2,11 @@ import PlayerSprite from './PlayerSprite.tsx'
 import Mons from './WildMonsGenerator.tsx'
 import { useEffect, useRef, useState } from 'react'
 
-// boundaries suss
-// use abe's code (but without images) to specify points on screen (within boundaires) that trigger a console.log()
-// change to randomly generated
-// possibly resize step/sprite/background so that it conforms to grid
-// change console.log() to link to battle scene
 
-// can run, which takes back to original screen (/game-1)
-// can catch
-// stretch - can battle
+// Change link
+// resize step/sprite/background so that it conforms to grid
+// Clean code, add comments
+// Pull request
 
 function generateRandomMons(
   count: number,
@@ -34,7 +30,7 @@ function Game1() {
     if (containerRef.current) {
       const mapWidth = containerRef.current.offsetWidth
       const mapHeight = containerRef.current.offsetHeight
-      const randomMons = generateRandomMons(10, mapWidth, mapHeight)
+      const randomMons = generateRandomMons(30, mapWidth, mapHeight)
       setMons(randomMons)
     }
   }, [containerRef])
