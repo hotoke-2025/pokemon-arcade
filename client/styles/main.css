@@ -139,6 +139,18 @@ body {
   border: 5px solid #070707;
 }
 
+.poke-map {
+  position: relative;
+  width: 95vw;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
+  margin: 40px auto;
+  background-image: url('/images/PokeMap.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  /* overflow: hidden; */
+}
 .caughtSprite {
   width: auto;
   height: auto;
