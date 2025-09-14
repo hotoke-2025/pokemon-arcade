@@ -1,6 +1,7 @@
 import PlayerSprite from './PlayerSprite.tsx'
 import Mons from './WildMonsGenerator.tsx'
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from "react-router"
 
 
 // Change link
@@ -15,6 +16,7 @@ function generateRandomMons(
 ) {
   return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
+    monId: Math.floor(Math.random() * 1025) + 1, // random Pokémon id
     top: Math.floor(Math.random() * (mapHeight - 50)), // 50px padding so it doesn’t overflow
     left: Math.floor(Math.random() * (mapWidth - 50)),
   }))
@@ -24,6 +26,7 @@ function Game1() {
   const [position, setPosition] = useState({ x: 80, y: 140 })
   const [mons, setMons] = useState<Mon[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate() // for collision detection 
 
   // Generate random mon locations when map loads:
   useEffect(() => {
@@ -43,12 +46,16 @@ function Game1() {
         position.y + 50 > mon.top &&
         position.y + 50 <= mon.top + 40
       ) {
+        // remove the mon
         const current = [...mons]
         current.splice(i, 1) // remove mon when caught
         setMons(current)
+
+        // navigate to Battle Scene
+        navigate(`/game-1/${mon.monId}`)
       }
     })
-  }, [position, mons])
+  }, [position, mons, navigate])
 
   return (
     <div>

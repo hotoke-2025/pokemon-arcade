@@ -1,7 +1,6 @@
-import { Link } from "react-router"
-
 interface Mon {
-  id: number
+  id: number //spawn location id
+  monId: number //pokemon pokedex id
   top: number
   left: number
 }
@@ -19,31 +18,24 @@ interface Props {
   >
 }
 
-function getRandomMonId(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-const monId = getRandomMonId(1, 1025)
-
 function Mons({ mons, setMons }: Props) {
-  const image = 'https://media.tenor.com/UZJd1pjj4NMAAAAe/surprised-pikachu.png'
-
+ 
   return (
- <div>
+    <>
       {mons.map((mon) => (
-        <Link key={mon.id} to={`/game-1/${monId}`}>
-          <img
-            alt={`wild-pokemon-${mon.id}`}
-            style={{
-              top: `${mon.top}px`,
-              left: `${mon.left}px`,
-              width: '4%',
-              position: 'absolute',
-            }}
-            src={image}
-          />
-        </Link>
+        <div
+          key={mon.id}
+          style={{
+            position: 'absolute',
+            top: `${mon.top}px`,
+            left: `${mon.left}px`,
+            width: '40px',
+            height: '40px',
+            background: 'transparent', // invisible
+          }}
+        />
       ))}
-    </div>
+    </>
   )
 }
 
