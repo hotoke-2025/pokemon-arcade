@@ -1,4 +1,22 @@
-import img from '/images/player-sprite-standing-facing-towards.png'
+import spriteDown from '/images/player-sprite-standing-facing-towards.png'
+import spriteUp from '/images/player-sprite-standing-facing-away.png'
+import spriteLeft from '/images/player-sprite-standing-facing-left.png'
+import spriteRight from '/images/player-sprite-standing-facing-right.png'
+const sprites = {
+  up: spriteUp,
+  down: spriteDown,
+  left: spriteLeft,
+  right: spriteRight,
+}
+// SPRINT TO DOS:
+// Add boundaries!!! (Might need to be done in Game1 component)
+// Add the pngs for walking and add another state for isWalking based on key down / key up
+// Resize all pngs to be exactly the same width with the sprite exactly centre (so that the sprite doesn't slowly diagnally move when spamming up left up left etc)
+// Add the equivalent images for female player and change sprite images based on backend "user" data
+
+// Define step and sprite sizes:
+const spriteWidth = '50px'
+const step = 20
 interface Sprite {
   x: number
   y: number
@@ -14,31 +32,44 @@ interface Props {
   >
 }
 
+import { useEffect, useState } from 'react'
 
-// Code from coins-5000 - to edit and use when fetching data on the player in the backend:
+// Use this when the player sprite changes appearance based on gender selection in the "user" table in the database
 // import { User } from '../../models/models'
 // import { usePlayerSprite } from '../hooks/usePlayerSprite'
 
-import { useEffect } from 'react'
-
-function PlayerSprite ({ position, setPosition }: Props) {
-  // Code from coins-5000 - to edit and use when fetching data on the player in the backend:
+function PlayerSprite({ position, setPosition }: Props) {
+  // Use this when the player sprite changes appearance based on gender selection in the "user" table in the database
   // const player = usePlayerSprite()
 
+  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>(
+    'down',
+  )
+
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent arrow keys from scrolling the page:
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault()
+      }
+
+      // Use the arrow keys to adjust the sprite position:
       switch (e.key) {
         case 'ArrowUp':
-          setPosition((prev) => ({ ...prev, y: prev.y - 20 }))
+          setPosition((prev) => ({ ...prev, y: prev.y - step }))
+          setDirection('up')
           break
         case 'ArrowDown':
-          setPosition((prev) => ({ ...prev, y: prev.y + 20 }))
+          setPosition((prev) => ({ ...prev, y: prev.y + step }))
+          setDirection('down')
           break
         case 'ArrowLeft':
-          setPosition((prev) => ({ ...prev, x: prev.x - 20 }))
+          setPosition((prev) => ({ ...prev, x: prev.x - step }))
+          setDirection('left')
           break
         case 'ArrowRight':
-          setPosition((prev) => ({ ...prev, x: prev.x + 20 }))
+          setPosition((prev) => ({ ...prev, x: prev.x + step }))
+          setDirection('right')
           break
         default:
           break
@@ -50,7 +81,7 @@ function PlayerSprite ({ position, setPosition }: Props) {
   }, [])
 
   return (
-    <div 
+    <div
       style={{
         position: 'absolute',
         left: position.x,
@@ -59,8 +90,8 @@ function PlayerSprite ({ position, setPosition }: Props) {
     >
       <img
         alt="img"
-        src={img}
-        style={{ width: '150px' }}
+        src={sprites[direction]}
+        style={{ width: spriteWidth }}
         id="player"
       ></img>
     </div>

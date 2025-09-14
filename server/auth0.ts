@@ -5,7 +5,7 @@ import { JwtPayload } from 'jsonwebtoken'
 import jwks from 'jwks-rsa'
 
 const domain = 'https://mako-nixon-25.au.auth0.com'
-const audience = ''  // 👈 must match what you put in index.tsx
+const audience = 'https://pokemon-arcade/api'  // 👈 must match what you put in index.tsx
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({

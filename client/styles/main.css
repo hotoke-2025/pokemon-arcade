@@ -1,3 +1,164 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: auto; /* disables scrolling */
+}
+
+.audio {
+  position: absolute;
+  left: 5px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #fbcb2a !important;
+}
+
+#backBtn {
+  background-color: white;
+  /* colour of button background */
+  border: 1px solid #000000;
+  /* border = blue outline of button */
+  border-radius: 50px;
+  /* border radius = rounded edges */
+  font-size: 15px;
+  transition: background-color 0.3 ease;
+  margin: 400px;
+  padding: 10px 10px;
+}
+
+#pixelify-sans {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: small;
+  font-style: normal;
+}
+@media only screen and (max-width: 480pxx) {
+  button {
+    width: 80%;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  margin: auto;
+  padding: 6px;
+}
+
+p {
+  font-size: 1.252rem;
+  color: #003f8b;
+  text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  text-align: center;
+}
+
+h1 {
+  /* background-color: aliceblue; */
+  border: 7px solid #3573bd;
+  border-radius: 15px;
+  margin: 10px;
+  /* width: auto;
+  height: auto; */
+  padding: 10px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #003f8b;
+  text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  text-align: center;
+}
+
+.links {
+  /* background-color: rgb(255, 246, 200); */
+  /* border: 3.5px solid #3573bd; */
+  border-radius: 10px;
+  padding: 7px;
+  word-spacing: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.navButtons {
+  border: 2px solid #003f8b;
+  border-radius: 5px;
+  padding: 2.5px;
+  width: 10;
+  height: 10;
+  margin-left: 5px;
+}
+
+.navButtons:hover {
+  background-color: yellow;
+}
+
+.active {
+  color: rgb(169, 26, 26);
+}
+
+.pokemon-container {
+  width: auto;
+  height: auto;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url(/images/CatchPokemonBackground.png);
+}
+
+.sprite-and-text {
+  width: auto;
+  width: auto;
+  height: auto;
+  max-width: 300px;
+  margin: auto;
+  padding: 10px;
+}
+
+.pokemonSprites {
+  filter: brightness(0%);
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-color: #fbcb2a;
+  border: 5px solid #070707;
+}
+
+.caughtSprite {
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
+.uncaughtSprite {
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+  filter: brightness(50%);
+}
+
+.uncaughtSpriteBackground {
+  background: url(/images/Fled.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
