@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export function wildPokemon() {
+export function BattleScene() {
   // const {data: pokemon,
   //   isPending,
   //   isError
@@ -18,6 +18,7 @@ export function wildPokemon() {
 
   //battle
   //damage
+
   return (
     <>
       <button>
