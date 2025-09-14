@@ -15,6 +15,9 @@ export function wildPokemon() {
   // if (isError) {
   //   return <span>Error: {error.message}</span>
   // }
+
+  //battle
+  //damage
   return (
     <>
       <button>
