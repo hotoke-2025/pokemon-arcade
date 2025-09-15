@@ -62,18 +62,18 @@ export default function ShowPokemon() {
           <div className="health-fill" style={{ width: `${health}%` }}></div>
         </div>
       </div>
-      <div className="battle-text">
+      <div className="battle-text buttonBorder">
         <h1>What will you do?</h1>
         <button
           id="fightBtn"
-          className="m-5 p-9"
+          className="fightButton m-5 p-9"
           onClick={handleFight}
         >
           {' '}
           Fight! {showExplosion && <Explosion />}
         </button>
         <button>
-          <Link id="backBtn" to={'/game-1'} className="m-5 p-9">
+          <Link id="backBtn" to={'/game-1'} className="runButton m-5 p-9">
             {' '}
             Run Away{' '}
           </Link>

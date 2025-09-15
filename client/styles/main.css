@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body {
   height: 100%;
@@ -31,6 +30,30 @@ audio::-webkit-media-controls-panel {
   /* transition: background-color 0.3 ease; */
   /* margin: 400px; */
   /* padding: 10px 10px; */
+}
+
+.buttonBorder {
+  background-color: #9f9f9f;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.fightButton {
+  background-color: #817f7f;
+  border-radius: 15px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+}
+.runButton {
+  background-color: #817f7f;
+  border-color: #817f7f;
+  border-radius: 15px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  padding: 14px;
 }
 
 .AuthButton {
@@ -150,6 +173,7 @@ h2 {
 
 .battle-text {
   font-family: 'Press Start 2P', cursive;
+  text-align: center;
 }
 
 .health-bar {
@@ -165,7 +189,6 @@ h2 {
   background-color: red;
   transition: width 0.3s ease;
 }
-
 
 .sprite-and-text {
   width: auto;
