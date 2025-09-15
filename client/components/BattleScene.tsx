@@ -1,44 +1,19 @@
-// export function BattleScene() {
-//     // const {data: pokemon,
-//     //   isPending,
-//     //   isError
-//     //   error,
-//     // } = useQuery({
-//     // })
-//     // if (isPending) {
-//     //   return <>Loading...</>
-//     // }
-//     // if (isError) {
-//     //   return <span>Error: {error.message}</span>
-//     // }
-//     //battle
-//     //damage
-//     //const health boolean is alive or notAlive
-//     // const isAlive = true
-//     //notAlive= explosion, back to map on click
-//     return (
-//       <>
-//         <button>
-//           <Link id="backBtn" to={'/game-1'}>
-//             {' '}
-//             Run Away{' '}
-//           </Link>
-//         </button>
-//         {/* <button id="fightBtn" isAlive="false">
-//           Fight!
-//         </button> */}
-//       </>
-//     )
-// }
+//battle
+//damage
+//const health boolean is alive or notAlive
+// const isAlive = true
+//notAlive= explosion, back to map on click
 
 import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
-// import { useState } from 'react'
+import { useState } from 'react'
+import { Explosion } from './Explosion.tsx'
 
 export default function ShowPokemon() {
   const { monId } = useParams()
+  const [showExplosion, setShowExplosion] = useState(false)
 
   // const [hiddenPokemon, setHiddenPokemon] = useState('')
 
@@ -80,7 +55,11 @@ export default function ShowPokemon() {
       </div>
       <div className="text-center">
         <h1>What will you do?</h1>
-        <button id="fightBtn"> Fight! </button>
+        <button id="fightBtn" onClick={() => setShowExplosion(true)}>
+          {' '}
+          Fight!{' '}
+          {showExplosion && <Explosion />}
+        </button>
         <button>
           <Link id="backBtn" to={'/game-1'}>
             {' '}
