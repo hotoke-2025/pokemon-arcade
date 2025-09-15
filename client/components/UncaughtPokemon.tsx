@@ -40,7 +40,7 @@ export default function CaughtPokemon() {
     const monId = Math.floor(Math.random() * 1025) + 1
     window.location.href = `/game-2/${monId}`
   }}
-  className="bg-white border border-black rounded-full px-4 py-2 text-sm mx-auto block w-fit"
+  className="keepPlayingButton"
 >
   Keep Playing
 </button>

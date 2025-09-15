@@ -102,7 +102,7 @@ h2 {
 }
 
 .navButtons:hover {
-  background-color: yellow;
+  background-color: #ffde00;
 }
 
 .active {
@@ -177,5 +177,33 @@ body {
 
 .appearedText {
   border: 2px solid black;
-  border-radius: 8px;  
+  border-radius: 8px;
+}
+
+button {
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  padding: 5px;
+  width: auto;
+  height: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+button:hover {
+  background-color: #ffde00;
+}
+
+.keepPlayingButton {
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  padding: 5px;
+  width: auto;
+  height: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+.keepPlayingButton:hover {
+  background-color: #ffde00;
 }
