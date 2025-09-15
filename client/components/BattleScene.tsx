@@ -1,3 +1,5 @@
+// This is a copy of Game2. Need to replace with Rena's code 
+
 import { Link } from "react-router"
 
 function Game2() {
