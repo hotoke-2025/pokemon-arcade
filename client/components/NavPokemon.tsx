@@ -1,7 +1,12 @@
 import { NavLink } from 'react-router'
 
+
 export default function Navbar() {
+  
   return (
+    <>
+
+      
     <nav>
       <NavLink className="navButtons" to="/">
         Home
@@ -26,5 +31,6 @@ export default function Navbar() {
         view games
       </NavLink> */}
     </nav>
+    </>
   )
 }
