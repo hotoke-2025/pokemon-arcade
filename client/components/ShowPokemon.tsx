@@ -40,9 +40,8 @@ export default function ShowPokemon() {
   console.log(pokemon.name)
   return (
     <>
-      <h1 className="bg-transparent text-center text-2xl mt-5">
-        A wild Pokémon has appeared...
-      </h1>
+    <br></br>
+      <p>A wild Pokémon has appeared!</p>
       <div className="pokemon-container">
         <div className="sprite-and-text">
           <img
@@ -52,8 +51,10 @@ export default function ShowPokemon() {
           />
         </div>
       </div>
+      <br></br>
       <div className="text-center">
-        <h1 className="bg-transparent text-2xl m-5">Quick! Guess correctly to catch it! </h1>
+        <p>Quick! Guess correctly to catch it! </p>
+        <br></br>
         <input
           className="text-center rounded-2xl p-1"
           type="text"
@@ -63,11 +64,22 @@ export default function ShowPokemon() {
           onChange={handleInputChange}
         ></input>
         <br/>
-        <button 
-          onClick={handleSubmit}
-          className='m-5 p-1 bg-white rounded-xl'>
-            Submit
-        </button>
+        <div className="flex justify-center gap-4 mt-4">
+  <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+  <button onClick={handleSubmit}>
+    Submit
+  </button>
+
+  <button
+    onClick={() => {
+      const monId = Math.floor(Math.random() * 1025) + 1
+      window.location.href = `/game-2/${monId}`
+    }}
+  >
+    RUN
+  </button>
+</div>
+</div>
       </div>
     </>
   )
