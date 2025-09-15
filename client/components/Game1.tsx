@@ -1,15 +1,10 @@
-<<<<<<< HEAD
-// import { Link } from 'react-router'
-// import MyAudioPlayer from './Audio.tsx'
-import { BattleScene } from './BattleScene.tsx'
-=======
->>>>>>> main
 import PlayerSprite from './PlayerSprite.tsx'
 import Mons from './WildMonsGenerator.tsx'
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from "react-router"
-
-
+import { useNavigate } from 'react-router'
+// import { Link } from 'react-router'
+// import MyAudioPlayer from './Audio.tsx'
+// import { BattleScene } from './BattleScene.tsx'
 // resize step/sprite/background so that it conforms to grid
 // Clean code, add comments
 // Pull request
@@ -31,7 +26,7 @@ function Game1() {
   const [position, setPosition] = useState({ x: 385, y: 240 })
   const [mons, setMons] = useState<Mon[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-  const navigate = useNavigate() // for collision detection 
+  const navigate = useNavigate() // for collision detection
 
   // Generate random mon locations when map loads:
   useEffect(() => {
@@ -64,14 +59,7 @@ function Game1() {
 
   return (
     <div>
-<<<<<<< HEAD
-      {/* <MyAudioPlayer /> */}
-      <PlayerSprite position={position} setPosition={setPosition} />
-
-      <p>Move the sprite to search for Pokémon</p>
-=======
       <p>Walk around to search for Pokémon!</p>
->>>>>>> main
 
       <div className="poke-map" ref={containerRef}>
         <PlayerSprite
