@@ -29,7 +29,7 @@ export default function CaughtPokemon() {
     particleCount: 70,
     spread: 100,
     origin: { y: 0.6 },
-    colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+    colors: ['#a864fd', '#29cdff', '#78ff44', '#ee73c4', '#fdff6a'],
   })
 }
 
