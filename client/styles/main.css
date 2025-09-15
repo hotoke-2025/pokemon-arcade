@@ -119,6 +119,16 @@ h2 {
   background-image: url(/images/CatchPokemonBackground.png);
 }
 
+.battle-container {
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url(/images/battle-scene-background.png);
+}
+
 .sprite-and-text {
   width: auto;
   width: auto;

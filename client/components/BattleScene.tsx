@@ -1,8 +1,6 @@
-//battle
-//damage
-//const health boolean is alive or notAlive
-// const isAlive = true
-//notAlive= explosion, back to map on click
+// To do:
+// Health bar 
+// Change 
 
 import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
@@ -44,7 +42,8 @@ export default function ShowPokemon() {
         A wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '}
         has appeared...
       </h1>
-      <div className="pokemon-container">
+      <div className="battle-container">
+        {/* (change this^ to pokemon-container to revert back to game2 baground) */}
         <div className="sprite-and-text">
           <img
             // className="pokemonSprites"
