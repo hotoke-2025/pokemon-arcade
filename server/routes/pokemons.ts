@@ -35,6 +35,15 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    await db.deletePokemon(id)
+    res.sendStatus(204)
+  } catch (e) {
+    console.log(e)
+  }
+})
 // router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
 //   if (!req.auth?.sub) {
 //     res.sendStatus(StatusCodes.UNAUTHORIZED)

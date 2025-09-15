@@ -16,7 +16,7 @@ import BattleScene from './components/BattleScene'
 import Pokedex from './components/Pokedex'
 
 
-const routes = createRoutesFromElements(
+export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
     <Route path="/pokedex" element={<Pokedex/>} />
@@ -30,6 +30,5 @@ const routes = createRoutesFromElements(
   </Route>,
 )
 
-const router = createBrowserRouter(routes)
+export const router = createBrowserRouter(routes)
 
-export default router

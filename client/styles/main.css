@@ -31,6 +31,12 @@ audio::-webkit-media-controls-panel {
   padding: 10px 10px;
 }
 
+.AuthButton
+{
+  position: absolute;
+  right: 5px;
+}
+
 #pixelify-sans {
   font-family: 'Pixelify Sans', sans-serif;
   font-optical-sizing: auto;

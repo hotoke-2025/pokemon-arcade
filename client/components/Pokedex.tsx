@@ -1,8 +1,15 @@
-import { usePokedex } from '../hooks/usePokedex'
+import { useDeletePokemon, usePokedex } from '../hooks/usePokedex'
 
 export default function Pokedex() {
   const { data: pokemons, isLoadingProperties, isErrorProperties, error } = usePokedex()
-
+  const deletePokemon = useDeletePokemon()
+  const handleDelete = async (id: number) => {
+    try {
+      return await deletePokemon.mutateAsync(id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   if (isLoadingProperties) return <p>Loading...</p>
   if (isErrorProperties) return <p>Error: {(error as Error).message}</p>
 
@@ -21,12 +28,6 @@ export default function Pokedex() {
               <td>
                 <strong>Nickname</strong>
               </td>
-              {/* <td>
-                <strong>User ID</strong>
-              </td>
-              <td>
-                <strong>User</strong>
-              </td> */}
             </tr>
           </thead>
           <tbody>
@@ -36,11 +37,11 @@ export default function Pokedex() {
                 <td>{pokemon.id}</td>
                 <td>{pokemon.name}</td>
                 <td>{pokemon.nickname}</td>
-                {/* <td>{pokemon.userId}</td>
-                <td>{pokemon.user}</td> */}
-                {/* <button className="del" onClick={() => handleDelete(pokemon.id)}>
-                  Delete
-                </button> */}
+                <td>
+                  <button className=" bg-white " onClick={() => handleDelete(pokemon.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

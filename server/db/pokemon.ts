@@ -26,3 +26,6 @@ export async function addPokemon(data: PokemonGeneration) {
   return id
 }
 
+export async function deletePokemon(id: number) {
+  return await db('caught_pokemon').where({ id }).del()
+}
