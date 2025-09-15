@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 import NavPokemon from './NavPokemon'
-// import AuthButton from './AuthButton.tsx';
+import AuthButton from './AuthButton.tsx';
 import Audio from './Audio'
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       {/* <AuthButton></AuthButton> */}
           <Audio/>
         </div>
+        <div className= "AuthButton"> <AuthButton></AuthButton></div>
         <h1>
           <img
             src="/images/pokemonarcadelogo.png"
