@@ -17,6 +17,16 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/users', async (req, res) => {
+  try {
+    const usersWithPokemon = await db.getUsersWithPokemon()
+    res.json(usersWithPokemon)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Could not fetch user Pokémon data' })
+  }
+})
+
 router.get('/:id', async (req, res, next) => {
   try {
     const pokemon = await db.getPokemonById(req.params.id)

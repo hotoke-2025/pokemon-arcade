@@ -1,13 +1,15 @@
 import { type Pokemon } from '../../models/pokemonList.ts'
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { useAddPokemon } from '../hooks/usePokedex.ts'
+import knex from 'knex'
+
 
 const empty = {
   id: '',
-  personName: '',
-  itemName: '',
-  location: '',
-  description: '',
+  name: '',
+  // nickname: '',
+  // released: '',
+  // userId: '',
 } as unknown as Pokemon
 
 export default function AddNewPokemon() {
@@ -25,9 +27,9 @@ export default function AddNewPokemon() {
       id: formState.id,
       name: formState.name,
       // not in type Pokemon (in models)
-      nickname: formState.nickname,
-      released: formState.released,
-      user_id: formState.userId,
+      //nickname: formState.nickname,
+      // released: formState.released,
+      // user_id: formState.userId,
     }
 
     const newPokemon = await addAPokemon.mutateAsync(data)
@@ -61,7 +63,7 @@ export default function AddNewPokemon() {
           onChange={handleChange}
         />
       </div>
-      <div className="form-item">
+      {/* <div className="form-item">
         <label htmlFor="nickname">Nickname: </label>
         <input
           name="nickname"
@@ -87,7 +89,7 @@ export default function AddNewPokemon() {
           value={formState.userId}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
       <button data-pending={addAPokemon.isPending}>Submit</button>
     </form>
   )
