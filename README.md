@@ -30,5 +30,15 @@ npm run dev # to start the dev server
 
 You can find the server running on [http://localhost:3000](http://localhost:3000) and the client running on [http://localhost:5173](http://localhost:5173).
 
+### Auth0
+
+| key           | value                                                            |
+| ------------- | ---------------------------------------------------------------- |
+| domain        | mako-nixon-25.au.auth0.com                                       |
+| audience      | https://pokemon-arcade/apiapi                                    |
+| client_id     | uhu7X6fXsJnSduCjchoU8NuAOPCk0VY6                                 |
+| email         | pokemonarcade@example.com                                        |
+| password      | CokeZero1000                                                     |
+
 ---
 [Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-fullstack)
