@@ -1,13 +1,14 @@
-import { Link, useNavigate } from 'react-router'
-import { fetchPokemonById } from '../apis/pokemon'
-import { useParams } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router'
+import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 
 export default function ShowPokemon() {
   const { monId } = useParams()
   const navigate = useNavigate()
   const [hiddenPokemon, setHiddenPokemon] = useState('')
+
+  const queryClient = useQueryClient()
 
   const {
     data: pokemon,
@@ -18,6 +19,16 @@ export default function ShowPokemon() {
     queryKey: ['pokemon', monId],
     queryFn: () => fetchPokemonById(Number(monId)),
   })
+
+  const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput>({
+  mutationFn: (pokemon: AddPokedexInput) => addPokedex(pokemon),
+  onSuccess: () => {
+    queryClient.invalidateQueries({queryKey: ['pokedex']})
+  },
+  onError: (error: Error) => {
+    console.log(error.message || 'Failed to add pokemon')
+  },
+})
 
   if (isPending) {
     return <>Loading...</>
@@ -30,8 +41,14 @@ export default function ShowPokemon() {
     setHiddenPokemon(e.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!pokemon) return
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
+      await addPokemonMutation.mutateAsync({
+        name: pokemon.name,
+        nickname: '',     // Need to add an input for setting nickname
+        released: false,
+        })
       navigate(`/game-2/caughtpokemon/${monId}`)
     } else {
       navigate(`/game-2/uncaughtpokemon/${monId}`)

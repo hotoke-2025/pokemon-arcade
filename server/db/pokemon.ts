@@ -1,5 +1,5 @@
 import db from './connection.ts'
-import { Pokemon, PokemonGeneration } from '../../models/pokemonList.ts'
+import { Pokemon} from '../../models/pokemonList.ts'
 // import knex from 'knex'
 
 export async function getUsersWithPokemon() {
@@ -21,11 +21,20 @@ export async function getPokemonById(id: number | string) {
   return pokemon as Pokemon
 }
 
-export async function addPokemon(data: PokemonGeneration) {
-  const [id] = await db('caught_pokemon').insert(data)
+export async function addPokemon(pokemon: {name: string
+  nickname: string
+  released: boolean
+  user_id: string
+}) {
+  const [id] = await db('caught_pokemon').insert(pokemon)
   return id
 }
 
 export async function deletePokemon(id: number) {
   return await db('caught_pokemon').where({ id }).del()
 }
+
+export async function getPokemonsByUserId(user_id: string) {
+  return await db('caught_pokemon').where({ user_id })
+}
+

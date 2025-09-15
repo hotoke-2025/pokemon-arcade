@@ -7,14 +7,21 @@ export async function fetchPokemonById(id: number) {
   const res = await request.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
   return res.body as Pokemon
 }
-
-export async function addPokedex(pokemon: {
+export interface CaughtPokemon {
   id: number
   name: string
   nickname: string
   released: boolean
-  user_id: number
-}) {
+  user_id?: number
+}
+export interface AddPokedexInput {
+  name: string
+  nickname: string
+  released: boolean
+  user_id?: number
+}
+
+export async function addPokedex(pokemon: AddPokedexInput) {
   const result = await request.post(`${rootURL}/pokedex`).send(pokemon)
   return result.body
 }

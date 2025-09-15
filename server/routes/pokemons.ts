@@ -1,6 +1,6 @@
 import { Router } from 'express'
-// import checkJwt, { JwtRequest } from '../auth0.ts'
-// import { StatusCodes } from 'http-status-codes'
+import checkJwt, { JwtRequest } from '../auth0.ts'
+import { StatusCodes } from 'http-status-codes'
 
 import * as db from '../db/pokemon.ts'
 
@@ -44,21 +44,33 @@ router.delete('/:id', async (req, res) => {
     console.log(e)
   }
 })
-// router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
-//   if (!req.auth?.sub) {
-//     res.sendStatus(StatusCodes.UNAUTHORIZED)
-//     return
-//   }
 
-//   try {
-//     const { owner, name } = req.body
-//     const id = await db.addPokemon({ owner, name })
-//     res
-//       .setHeader('Location', `${req.baseUrl}/${id}`)
-//       .sendStatus(StatusCodes.CREATED)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
+  if (!req.auth?.sub) {
+    res.sendStatus(StatusCodes.UNAUTHORIZED)
+    return
+  }
+  try {
+    const user_id = req.auth.sub
+    const { name, nickname, released } = req.body
+    const id = await db.addPokemon({ name, nickname, released, user_id })
+    res
+      .setHeader('Location', `${req.baseUrl}/${id}`)
+      .sendStatus(StatusCodes.CREATED)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
+  if (!req.auth?.sub) {
+    res.sendStatus(StatusCodes.UNAUTHORIZED)
+    return
+  }
+
+  const user_id = req.auth.sub
+  const pokemons = await db.getPokemonsByUserId(user_id)
+  res.json({ pokemons })
+})
 
 export default router

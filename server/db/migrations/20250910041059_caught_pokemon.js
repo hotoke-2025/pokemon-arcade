@@ -8,7 +8,7 @@ export function up(knex) {
     table.string('name')
     table.string('nickname')
     table.boolean('released')
-    table.integer('user_id').references('users.id')
+    table.string('user_id').references('users.id')
   })
 }
 

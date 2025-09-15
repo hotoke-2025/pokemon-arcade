@@ -15,7 +15,7 @@ export default function Pokedex() {
 
   return (
     <div>
-      <h1 className='text-center'>Pokedex</h1>
+      <h1 className='text-center'>Who&apos;s that Pokemon Pokedex</h1>
       <table id="table">
           <thead>
             <tr>
@@ -39,7 +39,7 @@ export default function Pokedex() {
                 <td>{pokemon.nickname}</td>
                 <td>
                   <button className=" bg-white " onClick={() => handleDelete(pokemon.id)}>
-                    Delete
+                    Release {pokemon.name}
                   </button>
                 </td>
               </tr>

@@ -29,7 +29,7 @@ export default function Navbar() {
 
       <NavLink className="navButtons" to="/pokedex/">
         {' '}
-        Pokedex{' '}
+        Who&apos;s that Pokemon Pokedex{' '}
       </NavLink>
 
       {/* <NavLink className="nav" to="/arcade">
