@@ -27,15 +27,6 @@ export default function CaughtPokemon() {
   return (
      <>
      <br></br>
-      <button
-  onClick={() => {
-    const monId = Math.floor(Math.random() * 1025) + 1
-    window.location.href = `/game-2/${monId}`
-  }}
-  className="bg-white border border-black rounded-full px-4 py-2 text-sm mx-auto block w-fit"
->
-  Keep Playing
-</button>
       <h1 className="bg-transparent text-center text-2xl mt-5">
   Oh no, not quite! The wild{' '}
   <span className="font-bold italic">
@@ -43,6 +34,17 @@ export default function CaughtPokemon() {
   </span>{' '}
   has fled!
 </h1>
+<br></br>
+<button
+  onClick={() => {
+    const monId = Math.floor(Math.random() * 1025) + 1
+    window.location.href = `/game-2/${monId}`
+  }}
+  className="keepPlayingButton"
+>
+  Keep Playing
+</button>
+<br></br>
 <br></br>
       <div className='uncaughtSpriteBackground'>
         <div className="uncaughtSprite">
