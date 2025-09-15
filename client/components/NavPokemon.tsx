@@ -22,6 +22,11 @@ export default function Navbar() {
         Tic-Tac-Johto{' '}
       </NavLink>
 
+      <NavLink className="navButtons" to="/pokedex/">
+        {' '}
+        Pokedex{' '}
+      </NavLink>
+
       {/* <NavLink className="nav" to="/arcade">
         view games
       </NavLink> */}

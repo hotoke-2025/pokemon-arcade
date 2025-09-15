@@ -8,14 +8,43 @@ export default function Pokedex() {
 
   return (
     <div>
-      <h1>Pokedex</h1>
-      <ul>
-        {pokemons?.map((pokemon: { id: number; name: string; nickname?: string }) => (
-          <li key={pokemon.id}>
-            {pokemon.name} {pokemon.nickname ? `(${pokemon.nickname})` : ''}
-          </li>
-        ))}
-      </ul>
+      <h1 className='text-center'>Pokedex</h1>
+      <table id="table">
+          <thead>
+            <tr>
+              <td>
+                <strong>ID</strong>
+              </td>
+              <td>
+                <strong>Name</strong>
+              </td>
+              <td>
+                <strong>Nickname</strong>
+              </td>
+              {/* <td>
+                <strong>User ID</strong>
+              </td>
+              <td>
+                <strong>User</strong>
+              </td> */}
+            </tr>
+          </thead>
+          <tbody>
+            {' '}
+            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string }) => (
+              <tr key={pokemon.id}>
+                <td>{pokemon.id}</td>
+                <td>{pokemon.name}</td>
+                <td>{pokemon.nickname}</td>
+                {/* <td>{pokemon.userId}</td>
+                <td>{pokemon.user}</td> */}
+                {/* <button className="del" onClick={() => handleDelete(pokemon.id)}>
+                  Delete
+                </button> */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </div>
   )
 }
