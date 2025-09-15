@@ -13,11 +13,13 @@ import Game2 from './components/Game2'
 import Game3 from './components/Game3'
 import Home from './components/Home'
 import BattleScene from './components/BattleScene'
+import Pokedex from './components/Pokedex'
 
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
+    <Route path="/pokedex" element={<Pokedex/>} />
     <Route path="/game-3" element={<Game3 />} />
     <Route path="/game-2" element={<Game2 />} />
     <Route path="/game-2/:monId" element={<ShowPokemon />} />

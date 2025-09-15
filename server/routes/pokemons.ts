@@ -9,15 +9,14 @@ const router = Router()
 router.get('/', async (req, res) => {
   try {
     const pokemons = await db.getAllPokemons()
-
-    res.json({ pokemons: pokemons.map((pokemon) => pokemon.name) })
+    res.json({ pokemons })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Something went wrong' })
   }
 })
 
-router.get('/users', async (req, res) => {
+router.get('/user', async (req, res) => {
   try {
     const usersWithPokemon = await db.getUsersWithPokemon()
     res.json(usersWithPokemon)

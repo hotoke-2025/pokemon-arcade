@@ -6,14 +6,30 @@ import {
 } from '@tanstack/react-query'
 import { fetchPokemonById, addPokedex, deletePokedex } from '../apis/pokemon.ts'
 
+async function fetchPokedex() {
+  const res = await fetch('/api/v1/pokedex')
+  if (!res.ok) throw new Error('Failed to fetch pokedex')
+  const data = await res.json()
+  return data.pokemons
+}
+
 export function usePokedex() {
-  // unsure if fetchPokemonById needs a parameter
-  const query = useQuery({ queryKey: ['pokemon'], queryFn: () => fetchPokemonById })
+  const query = useQuery({
+    queryKey: ['pokedex'],
+    queryFn: fetchPokedex,
+  })
   return {
     ...query,
     isLoadingProperties: query.isLoading,
     isErrorProperties: query.isError,
   }
+}
+
+export function usePokemonById(id: number) {
+  return useQuery({
+    queryKey: ['pokemon', id],
+    queryFn: () => fetchPokemonById(id),
+  })
 }
 
 export function usePokedexMutation<TData = unknown, TVariables = unknown>(
@@ -23,7 +39,7 @@ export function usePokedexMutation<TData = unknown, TVariables = unknown>(
   const mutation = useMutation({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['pokemon'] })
+      queryClient.invalidateQueries({ queryKey: ['pokedex'] })
     },
   })
   return mutation
