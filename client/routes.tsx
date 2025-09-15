@@ -15,7 +15,7 @@ import Home from './components/Home'
 import BattleScene from './components/BattleScene'
 
 
-const routes = createRoutesFromElements(
+export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
     <Route path="/game-3" element={<Game3 />} />
@@ -28,6 +28,5 @@ const routes = createRoutesFromElements(
   </Route>,
 )
 
-const router = createBrowserRouter(routes)
+export const router = createBrowserRouter(routes)
 
-export default router
