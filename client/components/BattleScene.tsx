@@ -1,6 +1,8 @@
 // To do:
-// Health bar 
-// Change 
+// Display whole background image
+// Move pokemon sprite to the top right of the background image
+// Text and buttons to display over the background image and in pixelly font
+// Have a health bar that goes down by a quarter with each click of the "fight" button before the explosion gif and "you won" message appears.
 
 import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
@@ -12,8 +14,7 @@ import { Explosion } from './Explosion.tsx'
 export default function ShowPokemon() {
   const { monId } = useParams()
   const [showExplosion, setShowExplosion] = useState(false)
-
-  // const [hiddenPokemon, setHiddenPokemon] = useState('')
+  const [health, setHealth] = useState(100)
 
   const {
     data: pokemon,
@@ -33,8 +34,14 @@ export default function ShowPokemon() {
     return <span>Error: {error.message}</span>
   }
 
-  console.log(pokemon.name)
-  //run away
+  function handleFight() {
+    if (health > 25) {
+      setHealth(health - 25)
+    } else {
+      setHealth(0)
+      setShowExplosion(true)
+    }
+  }
 
   return (
     <>
@@ -42,25 +49,31 @@ export default function ShowPokemon() {
         A wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '}
         has appeared...
       </h1>
-      <div className="battle-container">
+      <div className="pokemon-container">
         {/* (change this^ to pokemon-container to revert back to game2 baground) */}
-        <div className="sprite-and-text">
+        <div>
           <img
-            // className="pokemonSprites"
+            className=""
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
           />
         </div>
+        <div className="health-bar">
+          <div className="health-fill" style={{ width: `${health}%` }}></div>
+        </div>
       </div>
-      <div className="text-center">
+      <div className="battle-text">
         <h1>What will you do?</h1>
-        <button id="fightBtn" onClick={() => setShowExplosion(true)}>
+        <button
+          id="fightBtn"
+          className="m-5 p-9"
+          onClick={handleFight}
+        >
           {' '}
-          Fight!{' '}
-          {showExplosion && <Explosion />}
+          Fight! {showExplosion && <Explosion />}
         </button>
         <button>
-          <Link id="backBtn" to={'/game-1'}>
+          <Link id="backBtn" to={'/game-1'} className="m-5 p-9">
             {' '}
             Run Away{' '}
           </Link>

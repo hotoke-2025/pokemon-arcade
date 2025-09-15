@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 html,
 body {
@@ -19,20 +21,19 @@ audio::-webkit-media-controls-panel {
 }
 
 #backBtn {
-  background-color: white;
+  /* background-color: white; */
   /* colour of button background */
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   /* border = blue outline of button */
-  border-radius: 50px;
+  /* border-radius: 50px; */
   /* border radius = rounded edges */
-  font-size: 15px;
-  transition: background-color 0.3 ease;
-  margin: 400px;
-  padding: 10px 10px;
+  /* font-size: 15px; */
+  /* transition: background-color 0.3 ease; */
+  /* margin: 400px; */
+  /* padding: 10px 10px; */
 }
 
-.AuthButton
-{
+.AuthButton {
   position: absolute;
   right: 5px;
 }
@@ -126,14 +127,45 @@ h2 {
 }
 
 .battle-container {
+  position: relative;
   width: auto;
-  height: auto;
-  max-width: 800px;
+  height: fit-content;
+  max-width: 600px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 0px;
   padding: 50px;
   background-image: url(/images/battle-scene-background.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+.battle-sprite {
+  position: relative;
+  top: -55px;
+  right: -190px;
+  width: 150px;
+  image-rendering: pixelated;
+}
+
+.battle-text {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.health-bar {
+  width: 200px;
+  height: 20px;
+  border: 2px solid black;
+  background-color: grey;
+  margin: 10px auto;
+}
+
+.health-fill {
+  height: 100%;
+  background-color: red;
+  transition: width 0.3s ease;
+}
+
 
 .sprite-and-text {
   width: auto;
