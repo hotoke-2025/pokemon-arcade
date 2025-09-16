@@ -74,12 +74,5 @@ router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   res.json({ pokemons })
 })
 
-async function syncUser(auth0UserId: string) {
-  const user = await db.getUserById(auth0UserId);
-  if (!user) {
-    await db.createUser({ id: auth0UserId});
-  }
-}
-
 
 export default router
