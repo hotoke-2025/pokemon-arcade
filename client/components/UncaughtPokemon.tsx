@@ -36,11 +36,11 @@ export default function CaughtPokemon() {
 </h1>
 <br></br>
 <button
+  className="keepPlayingButton"
   onClick={() => {
     const monId = Math.floor(Math.random() * 1025) + 1
     window.location.href = `/game-2/${monId}`
   }}
-  className="keepPlayingButton"
 >
   Keep Playing
 </button>

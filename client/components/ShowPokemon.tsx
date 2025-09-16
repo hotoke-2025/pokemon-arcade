@@ -42,7 +42,7 @@ export default function ShowPokemon() {
     <>
     <br></br>
       <p>A wild Pokémon has appeared!</p>
-      <div className="pokemon-container">
+      <div className="wtp-container">
         <div className="sprite-and-text">
           <img
             className="pokemonSprites"
@@ -66,17 +66,20 @@ export default function ShowPokemon() {
         <br/>
         <div className="flex justify-center gap-4 mt-4">
   <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-  <button onClick={handleSubmit}>
+  <button
+  className="submitButton"
+  onClick={handleSubmit}>
     Submit
   </button>
 
   <button
-    onClick={() => {
+  className="skipButton"
+  onClick={() => {
       const monId = Math.floor(Math.random() * 1025) + 1
       window.location.href = `/game-2/${monId}`
     }}
   >
-    RUN
+    Skip
   </button>
 </div>
 </div>
