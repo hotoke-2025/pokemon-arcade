@@ -45,7 +45,7 @@ export default function CaughtPokemon() {
 </button>
 <br></br>
 <br></br>
-      <div className='uncaughtSpriteBackground'>
+      <div className="wtp-container">
         <div className="uncaughtSprite">
           <img
           className='h-3vw'

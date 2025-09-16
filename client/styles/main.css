@@ -178,7 +178,7 @@ h2 {
 
 .pokemonSprites {
   filter: brightness(0%);
-  margin-left: -80px;
+  margin-left: -90px;
 }
 
 body {
@@ -222,11 +222,6 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
-}
-
-.appearedText {
-  border: 2px solid black;
-  border-radius: 8px;
 }
 
 .submitButton {
