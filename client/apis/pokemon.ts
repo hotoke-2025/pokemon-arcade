@@ -29,3 +29,10 @@ export async function addPokedex(pokemon: AddPokedexInput, token: string) {
 export async function deletePokedex(id: number) {
   await request.delete(`${rootURL}/pokedex/${id}`)
 }
+
+export async function updateNickname(id: number, nickname: string, token: string) {
+  await request
+    .patch(`${rootURL}/pokedex/${id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({ nickname })
+}

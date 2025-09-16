@@ -74,5 +74,22 @@ router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   res.json({ pokemons })
 })
 
+router.patch('/:id', checkJwt, async (req: JwtRequest, res) => {
+  if (!req.auth?.sub) {
+    return res.sendStatus(StatusCodes.UNAUTHORIZED)
+  }
+
+  const id = Number(req.params.id)
+  const { nickname } = req.body
+
+  try {
+    await db.updateNickname(id, nickname, req.auth.sub)
+    res.sendStatus(StatusCodes.NO_CONTENT)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Could not update nickname' })
+  }
+})
+
 
 export default router

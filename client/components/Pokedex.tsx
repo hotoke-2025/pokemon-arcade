@@ -1,8 +1,46 @@
 import { useDeletePokemon, usePokedex } from '../hooks/usePokedex'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { updateNickname } from '../apis/pokemon'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useState } from 'react'
 
 export default function Pokedex() {
-  const { data: pokemons, isLoadingProperties, isErrorProperties, error } = usePokedex()
+  const {
+    data: pokemons,
+    isLoadingProperties,
+    isErrorProperties,
+    error,
+  } = usePokedex()
   const deletePokemon = useDeletePokemon()
+  const { getAccessTokenSilently } = useAuth0()
+  const queryClient = useQueryClient()
+  const [nicknameEdits, setNicknameEdits] = useState<{ [id: number]: string }>(
+    {},
+  )
+
+  const updateNicknameMutation = useMutation({
+    mutationFn: async ({ id, nickname }: { id: number; nickname: string }) => {
+      const token = await getAccessTokenSilently()
+      return updateNickname(id, nickname, token)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pokedex'] })
+    },
+    onError: (err) => {
+      console.error('Failed to update nickname:', err)
+    },
+  })
+
+  const handleNicknameChange = (id: number, value: string) => {
+    setNicknameEdits((prev) => ({ ...prev, [id]: value }))
+  }
+
+  const handleNicknameSave = (id: number) => {
+    const nickname = nicknameEdits[id]
+    if (!nickname) return
+    updateNicknameMutation.mutate({ id, nickname })
+  }
+
   const handleDelete = async (id: number) => {
     try {
       return await deletePokemon.mutateAsync(id)
@@ -15,7 +53,7 @@ export default function Pokedex() {
 
   return (
     <div>
-      <h1 className='text-center'>Who&apos;s that Pokemon Pokedex</h1>
+      <h1 className="text-center">Who&apos;s that Pokemon Pokedex</h1>
       <table id="table">
           <thead>
             <tr>
@@ -38,111 +76,18 @@ export default function Pokedex() {
                 <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
                 <td>{pokemon.nickname}</td>
                 <td>
-                  <button className=" bg-white " onClick={() => handleDelete(pokemon.id)}>
+                  <button
+                    className=" bg-white "
+                    onClick={() => handleDelete(pokemon.id)}
+                  >
                     Release {pokemon.name}
                   </button>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            ),
+          )}
+        </tbody>
+      </table>
     </div>
   )
 }
-
-
-// import { type Pokemon } from '../../models/pokemonList.ts'
-// import { useState, FormEvent, ChangeEvent } from 'react'
-// import { useAddPokemon } from '../hooks/usePokedex.ts'
-
-
-// const empty = {
-//   id: '',
-//   name: '',
-//   // nickname: '',
-//   // released: '',
-//   // userId: '',
-// } as unknown as Pokemon
-
-// export default function AddNewPokemon() {
-//   const addAPokemon = useAddPokemon()
-//   const [formState, setFormState] = useState(empty)
-
-//   async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
-//     evt.preventDefault()
-
-//     if (addAPokemon.isPending) {
-//       return
-//     }
-
-//     const data = {
-//       id: formState.id,
-//       name: formState.name,
-//       // not in type Pokemon (in models)
-//       //nickname: formState.nickname,
-//       // released: formState.released,
-//       // user_id: formState.userId,
-//     }
-
-//     const newPokemon = await addAPokemon.mutateAsync(data)
-//     console.log('add a pokemon', newPokemon)
-//     setFormState(empty)
-//   }
-
-//   function handleChange(evt: ChangeEvent<HTMLInputElement>) {
-//     const { name, value } = evt.currentTarget
-
-//     setFormState((prev) => ({ ...prev, [name]: value }))
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit} className="form">
-//       <div className="form-item">
-//         <label htmlFor="id">Id: </label>
-//         <input
-//           name="id"
-//           id="id"
-//           value={formState.id}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div className="form-item">
-//         <label htmlFor="name">Name: </label>
-//         <input
-//           name="name"
-//           id="name"
-//           value={formState.name}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       {/* <div className="form-item">
-//         <label htmlFor="nickname">Nickname: </label>
-//         <input
-//           name="nickname"
-//           id="nickname"
-//           value={formState.nickname}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div className="form-item">
-//         <label className="released" htmlFor="item">Caught: </label>
-//         <input
-//           name="released"
-//           id="released"
-//           value={formState.released}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div className="form-item">
-//         <label className="userId" htmlFor="item">User Id: </label>
-//         <input
-//           name="userId"
-//           id="userId"
-//           value={formState.userId}
-//           onChange={handleChange}
-//         />
-//       </div> */}
-//       <button data-pending={addAPokemon.isPending}>Submit</button>
-//     </form>
-//   )
-// }
