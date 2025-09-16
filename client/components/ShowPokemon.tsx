@@ -49,7 +49,12 @@ export default function ShowPokemon() {
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
       if (isAuthenticated){
         try {
-          const token = await getAccessTokenSilently()
+          const token = await getAccessTokenSilently({
+            authorizationParams: {
+              audience: 'https://pokemon-arcade/api',
+            },
+          })
+          console.log('Attempting to add pokemon', pokemon.name)
           await addPokemonMutation.mutateAsync({
           name: pokemon.name,
           nickname: '',     // Need to add an input for setting nickname

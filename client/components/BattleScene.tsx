@@ -10,8 +10,12 @@ import { useState } from 'react'
 import { Explosion } from './Explosion.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
-
+import {
+  fetchPokemonById,
+  addPokedex,
+  AddPokedexInput,
+  CaughtPokemon,
+} from '../apis/pokemon'
 
 export default function ShowPokemon() {
   const { monId } = useParams()
@@ -30,15 +34,19 @@ export default function ShowPokemon() {
     queryFn: () => fetchPokemonById(Number(monId)),
   })
 
-   const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput & { token: string }>({
-  mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
-  onSuccess: () => {
-    queryClient.invalidateQueries({queryKey: ['pokedex']})
-  },
-  onError: (error: Error) => {
-    console.log(error.message || 'Failed to add pokemon')
-  },
-})
+  const addPokemonMutation = useMutation<
+    CaughtPokemon,
+    Error,
+    AddPokedexInput & { token: string }
+  >({
+    mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pokedex'] })
+    },
+    onError: (error: Error) => {
+      console.log(error.message || 'Failed to add pokemon')
+    },
+  })
 
   if (isPending) {
     return <>Loading...</>
@@ -48,27 +56,33 @@ export default function ShowPokemon() {
     return <span>Error: {error.message}</span>
   }
 
-  const handleFight= async () => {
+  const handleFight = async () => {
     if (health > 25) {
       setHealth(health - 25)
     } else {
       setHealth(0)
       setShowExplosion(true)
-      if (isAuthenticated){
+      if (isAuthenticated) {
         try {
-          const token = await getAccessTokenSilently()
+          const token = await getAccessTokenSilently({
+            authorizationParams: {
+              audience: 'https://pokemon-arcade/api',
+            },
+          })
+          console.log('Attempting to add pokemon', pokemon.name)
           await addPokemonMutation.mutateAsync({
-          name: pokemon.name,
-          nickname: '',
-          released: false,
-          token,
-          image: pokemon.sprites.front_default,
-        })
-      } catch (error){
-        console.error('Failed to add pokemon:', error)
+            name: pokemon.name,
+            nickname: '',
+            released: false,
+            token,
+            image: pokemon.sprites.front_default,
+          })
+        } catch (error) {
+          console.error('Failed to add pokemon:', error)
+        }
       }
     }
-  }}
+  }
 
   return (
     <>
@@ -91,11 +105,7 @@ export default function ShowPokemon() {
       </div>
       <div className="battle-text">
         <h1>What will you do?</h1>
-        <button
-          id="fightBtn"
-          className="m-5 p-9"
-          onClick={handleFight}
-        >
+        <button id="fightBtn" className="m-5 p-9" onClick={handleFight}>
           {' '}
           Fight! {showExplosion && <Explosion />}
         </button>
