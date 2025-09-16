@@ -66,14 +66,14 @@ export default function ShowPokemon() {
         <h1>What will you do?</h1>
         <button
           id="fightBtn"
-          className="fightButton m-5 p-9"
+          className="actionButton fightButton"
           onClick={handleFight}
         >
           {' '}
           Fight! {showExplosion && <Explosion />}
         </button>
         <button>
-          <Link id="backBtn" to={'/game-1'} className="runButton m-5 p-9">
+          <Link id="backBtn" to={'/game-1'} className="actionButton runButton">
             {' '}
             Run Away{' '}
           </Link>

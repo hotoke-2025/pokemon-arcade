@@ -32,30 +32,6 @@ audio::-webkit-media-controls-panel {
   /* padding: 10px 10px; */
 }
 
-.buttonBorder {
-  background-color: #9f9f9f;
-  border-radius: 15px;
-  margin: 5px;
-}
-
-.fightButton {
-  background-color: #817f7f;
-  border-radius: 15px;
-  margin: 5px;
-  width: auto;
-  height: auto;
-  padding: 10px;
-}
-.runButton {
-  background-color: #817f7f;
-  border-color: #817f7f;
-  border-radius: 15px;
-  margin: 5px;
-  width: auto;
-  height: auto;
-  padding: 14px;
-}
-
 .AuthButton {
   position: absolute;
   right: 5px;
@@ -171,9 +147,40 @@ h2 {
   image-rendering: pixelated;
 }
 
+.buttonBorder {
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin: 5px;
+}
+
 .battle-text {
   font-family: 'Press Start 2P', cursive;
   text-align: center;
+}
+
+.fightButton {
+  background-color: #ffcbcb;
+  border: 7px solid #cb2d2d;
+  padding: 10px;
+}
+.runButton {
+  background-color: #cbd3ff;
+  border: 7px solid #302dcb;
+  padding: 14px;
+}
+
+.fightButton:hover {
+  background-color: #ff9494;
+}
+.runButton:hover {
+  background-color: #8396ff;
+}
+
+.actionButton {
+  border-radius: 15px;
+  margin: 5px;
+  width: auto;
+  height: auto;
 }
 
 .health-bar {
