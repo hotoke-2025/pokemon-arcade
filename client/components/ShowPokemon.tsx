@@ -2,6 +2,8 @@ import { useNavigate, useParams } from 'react-router'
 import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+
 
 export default function ShowPokemon() {
   const { monId } = useParams()
@@ -9,6 +11,7 @@ export default function ShowPokemon() {
   const [hiddenPokemon, setHiddenPokemon] = useState('')
 
   const queryClient = useQueryClient()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   const {
     data: pokemon,
@@ -20,8 +23,8 @@ export default function ShowPokemon() {
     queryFn: () => fetchPokemonById(Number(monId)),
   })
 
-  const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput>({
-  mutationFn: (pokemon: AddPokedexInput) => addPokedex(pokemon),
+  const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput & { token: string }>({
+  mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
   onSuccess: () => {
     queryClient.invalidateQueries({queryKey: ['pokedex']})
   },
@@ -44,11 +47,19 @@ export default function ShowPokemon() {
   const handleSubmit = async () => {
     if (!pokemon) return
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
-      await addPokemonMutation.mutateAsync({
-        name: pokemon.name,
-        nickname: '',     // Need to add an input for setting nickname
-        released: false,
+      if (isAuthenticated){
+        try {
+          const token = await getAccessTokenSilently()
+          await addPokemonMutation.mutateAsync({
+          name: pokemon.name,
+          nickname: '',     // Need to add an input for setting nickname
+          released: false,
+          token,
         })
+      } catch (error){
+        console.error('Failed to add pokemon:', error)
+      }
+    }
       navigate(`/game-2/caughtpokemon/${monId}`)
     } else {
       navigate(`/game-2/uncaughtpokemon/${monId}`)

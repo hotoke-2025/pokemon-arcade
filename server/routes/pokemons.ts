@@ -52,6 +52,7 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
   }
   try {
     const user_id = req.auth.sub
+    await db.syncUser(user_id)
     const { name, nickname, released } = req.body
     const id = await db.addPokemon({ name, nickname, released, user_id })
     res
@@ -72,5 +73,13 @@ router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   const pokemons = await db.getPokemonsByUserId(user_id)
   res.json({ pokemons })
 })
+
+async function syncUser(auth0UserId: string) {
+  const user = await db.getUserById(auth0UserId);
+  if (!user) {
+    await db.createUser({ id: auth0UserId});
+  }
+}
+
 
 export default router

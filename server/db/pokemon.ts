@@ -38,3 +38,18 @@ export async function getPokemonsByUserId(user_id: string) {
   return await db('caught_pokemon').where({ user_id })
 }
 
+export async function syncUser(auth0UserId: string) {
+  const user = await getUserById(auth0UserId)
+  if (!user) {
+    await createUser({ id: auth0UserId })
+  }
+}
+
+export async function getUserById(id: string) {
+  const result = await db('users').where({ id }).first()
+  return result || null
+}
+
+export async function createUser(user: { id: string }) {
+  await db('users').insert(user)
+}

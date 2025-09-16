@@ -1,6 +1,5 @@
 import request from 'superagent'
 import type { Pokemon } from '../../models/pokemonList.ts'
-
 const rootURL = new URL(`/api/v1`, document.baseURI)
 
 export async function fetchPokemonById(id: number) {
@@ -21,8 +20,8 @@ export interface AddPokedexInput {
   user_id?: number
 }
 
-export async function addPokedex(pokemon: AddPokedexInput) {
-  const result = await request.post(`${rootURL}/pokedex`).send(pokemon)
+export async function addPokedex(pokemon: AddPokedexInput, token: string) {
+  const result = await request.post(`${rootURL}/pokedex`).set('Authorization', `Bearer ${token}`).send(pokemon)
   return result.body
 }
 
