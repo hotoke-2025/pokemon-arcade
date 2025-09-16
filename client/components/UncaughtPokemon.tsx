@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
