@@ -1,17 +1,17 @@
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 
 export function Explosion() {
   console.log('You Win!')
   return (
     <>
-      {' '}
+      {/* {' '}
       <button>
         <Link id="backBtn" to={'/game-1'}>
           {' '}
           Go back{' '}
         </Link>
-      </button>
-      <div className="text-center">
+      </button> */}
+      <div>
         <h1>You Win!</h1>
         <img src="../images/explosion-boom.gif" alt="explosion"></img>
       </div>

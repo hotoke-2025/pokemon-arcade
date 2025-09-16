@@ -123,6 +123,7 @@ h2 {
   margin-top: 50px;
   padding: 50px;
   background-image: url(/images/CatchPokemonBackground.png);
+  background-repeat: no-repeat;
 }
 
 .battle-container {
@@ -183,6 +184,14 @@ h2 {
   height: auto;
 }
 
+.explosion-container {
+  width: auto;
+  height: auto;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+}
 .health-bar {
   width: 200px;
   height: 20px;
@@ -208,6 +217,7 @@ h2 {
 
 .pokemonSprites {
   filter: brightness(0%);
+  margin-left: -80px;
 }
 
 body {
@@ -258,7 +268,7 @@ body {
   border-radius: 8px;
 }
 
-button {
+.submitButton {
   border: 2px solid #3b4cca;
   border-radius: 5px;
   padding: 5px;
@@ -268,7 +278,21 @@ button {
   display: block;
 }
 
-button:hover {
+.submitButton:hover {
+  background-color: #ffde00;
+}
+
+.skipButton {
+  border: 2px solid #3b4cca;
+  border-radius: 5px;
+  padding: 5px;
+  width: auto;
+  height: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+.skipButton:hover {
   background-color: #ffde00;
 }
 
@@ -284,4 +308,18 @@ button:hover {
 
 .keepPlayingButton:hover {
   background-color: #ffde00;
+}
+
+.wtp-container {
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url(/images/WTP.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

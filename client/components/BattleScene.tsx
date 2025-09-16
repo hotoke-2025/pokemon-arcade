@@ -10,8 +10,12 @@ import { useState } from 'react'
 import { Explosion } from './Explosion.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
-
+import {
+  fetchPokemonById,
+  addPokedex,
+  AddPokedexInput,
+  CaughtPokemon,
+} from '../apis/pokemon'
 
 export default function ShowPokemon() {
   const { monId } = useParams()
@@ -30,15 +34,19 @@ export default function ShowPokemon() {
     queryFn: () => fetchPokemonById(Number(monId)),
   })
 
-   const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput & { token: string }>({
-  mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
-  onSuccess: () => {
-    queryClient.invalidateQueries({queryKey: ['pokedex']})
-  },
-  onError: (error: Error) => {
-    console.log(error.message || 'Failed to add pokemon')
-  },
-})
+  const addPokemonMutation = useMutation<
+    CaughtPokemon,
+    Error,
+    AddPokedexInput & { token: string }
+  >({
+    mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pokedex'] })
+    },
+    onError: (error: Error) => {
+      console.log(error.message || 'Failed to add pokemon')
+    },
+  })
 
   if (isPending) {
     return <>Loading...</>
@@ -48,26 +56,27 @@ export default function ShowPokemon() {
     return <span>Error: {error.message}</span>
   }
 
-  const handleFight= async () => {
+  const handleFight = async () => {
     if (health > 25) {
       setHealth(health - 25)
     } else {
       setHealth(0)
       setShowExplosion(true)
-      if (isAuthenticated){
+      if (isAuthenticated) {
         try {
           const token = await getAccessTokenSilently()
           await addPokemonMutation.mutateAsync({
-          name: pokemon.name,
-          nickname: '',
-          released: false,
-          token,
-        })
-      } catch (error){
-        console.error('Failed to add pokemon:', error)
+            name: pokemon.name,
+            nickname: '',
+            released: false,
+            token,
+          })
+        } catch (error) {
+          console.error('Failed to add pokemon:', error)
+        }
       }
     }
-  }}
+  }
 
   return (
     <>
@@ -76,7 +85,7 @@ export default function ShowPokemon() {
         has appeared...
       </h1>
       <div className="pokemon-container">
-        {/* (change this^ to pokemon-container to revert back to game2 baground) */}
+        {showExplosion && <Explosion />}
         <div>
           <img
             className=""
@@ -84,6 +93,7 @@ export default function ShowPokemon() {
             alt={`Front Default Sprite for ${pokemon.name}`}
           />
         </div>
+
         <div className="health-bar">
           <div className="health-fill" style={{ width: `${health}%` }}></div>
         </div>
@@ -96,7 +106,7 @@ export default function ShowPokemon() {
           onClick={handleFight}
         >
           {' '}
-          Fight! {showExplosion && <Explosion />}
+          Fight!
         </button>
         <button>
           <Link id="backBtn" to={'/game-1'} className="actionButton runButton">
