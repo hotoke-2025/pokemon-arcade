@@ -1,20 +1,5 @@
 # Boilerplate: Fullstack with Sass
 
-## Setup
-
-### What's included
-
-This repo includes:
-
-* a single, simple API endpoint (`/api/v1/fruits`)
-* frontend routing via react-router
-* an auth0 setup waiting to be configured
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* configuration for Vitest and testing library
-* configuration for server-side debugging in VS Code
-* configuration for preprocessing css with tailwind support
-
 ### Installation
 
 #### **From the Github UI**
@@ -41,4 +26,16 @@ You can find the server running on [http://localhost:3000](http://localhost:3000
 | password      | CokeZero1000                                                     |
 
 ---
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-fullstack)
+
+## Seeds and Migrations setup for testing
+
+If you run ```npm run knex seed:run``` directly, the terminal will return the error - SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+To reset the seeds,
+
+```
+knex --knexfile ./server/db/knexfile.js migrate:rollback --all 
+knex --knexfile ./server/db/knexfile.js migrate:latest
+npm run knex seed:run
+
+```
+You can match the data in http://localhost:5173/pokedex/ to the dev.sqlite3 file to check it has worked.
