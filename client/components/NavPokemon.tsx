@@ -5,7 +5,6 @@ export default function Navbar() {
   
   return (
     <>
-
       
     <nav>
       <NavLink className="navButtons" to="/">
@@ -25,6 +24,11 @@ export default function Navbar() {
       <NavLink className="navButtons" to="/game-3/">
         {' '}
         Tic-Tac-Johto{' '}
+      </NavLink>
+
+      <NavLink className="navButtons" to="/pokedex/">
+        {' '}
+        Who&apos;s that Pokemon Pokedex{' '}
       </NavLink>
 
       {/* <NavLink className="nav" to="/arcade">

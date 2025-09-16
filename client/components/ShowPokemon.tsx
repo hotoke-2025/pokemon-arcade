@@ -1,13 +1,17 @@
-import { Link, useNavigate } from 'react-router'
-import { fetchPokemonById } from '../apis/pokemon'
-import { useParams } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router'
+import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+
 
 export default function ShowPokemon() {
   const { monId } = useParams()
   const navigate = useNavigate()
   const [hiddenPokemon, setHiddenPokemon] = useState('')
+
+  const queryClient = useQueryClient()
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   const {
     data: pokemon,
@@ -18,6 +22,16 @@ export default function ShowPokemon() {
     queryKey: ['pokemon', monId],
     queryFn: () => fetchPokemonById(Number(monId)),
   })
+
+  const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput & { token: string }>({
+  mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
+  onSuccess: () => {
+    queryClient.invalidateQueries({queryKey: ['pokedex']})
+  },
+  onError: (error: Error) => {
+    console.log(error.message || 'Failed to add pokemon')
+  },
+})
 
   if (isPending) {
     return <>Loading...</>
@@ -30,8 +44,22 @@ export default function ShowPokemon() {
     setHiddenPokemon(e.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!pokemon) return
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
+      if (isAuthenticated){
+        try {
+          const token = await getAccessTokenSilently()
+          await addPokemonMutation.mutateAsync({
+          name: pokemon.name,
+          nickname: '',     // Need to add an input for setting nickname
+          released: false,
+          token,
+        })
+      } catch (error){
+        console.error('Failed to add pokemon:', error)
+      }
+    }
       navigate(`/game-2/caughtpokemon/${monId}`)
     } else {
       navigate(`/game-2/uncaughtpokemon/${monId}`)
@@ -42,7 +70,7 @@ export default function ShowPokemon() {
     <>
     <br></br>
       <p>A wild Pokémon has appeared!</p>
-      <div className="pokemon-container">
+      <div className="wtp-container">
         <div className="sprite-and-text">
           <img
             className="pokemonSprites"
@@ -66,17 +94,20 @@ export default function ShowPokemon() {
         <br/>
         <div className="flex justify-center gap-4 mt-4">
   <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-  <button onClick={handleSubmit}>
+  <button
+  className="submitButton"
+  onClick={handleSubmit}>
     Submit
   </button>
 
   <button
-    onClick={() => {
+  className="skipButton"
+  onClick={() => {
       const monId = Math.floor(Math.random() * 1025) + 1
       window.location.href = `/game-2/${monId}`
     }}
   >
-    RUN
+    Skip
   </button>
 </div>
 </div>

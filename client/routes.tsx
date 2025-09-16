@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router'
 
+
 import App from './components/App'
 import ShowPokemon from './components/ShowPokemon'
 import Game1 from './components/Game1'
@@ -13,11 +14,13 @@ import Game2 from './components/Game2'
 import Game3 from './components/Game3'
 import Home from './components/Home'
 import BattleScene from './components/BattleScene'
+import Pokedex from './components/Pokedex'
 
 
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
+    <Route path="/pokedex" element={<Pokedex/>} />
     <Route path="/game-3" element={<Game3 />} />
     <Route path="/game-2" element={<Game2 />} />
     <Route path="/game-2/:monId" element={<ShowPokemon />} />
@@ -27,6 +30,7 @@ export const routes = createRoutesFromElements(
     <Route path="/game-1/:monId" element={<BattleScene />} />
   </Route>,
 )
+
 
 export const router = createBrowserRouter(routes)
 

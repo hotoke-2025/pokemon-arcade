@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
@@ -36,11 +35,11 @@ export default function CaughtPokemon() {
 </h1>
 <br></br>
 <button
+  className="keepPlayingButton"
   onClick={() => {
     const monId = Math.floor(Math.random() * 1025) + 1
     window.location.href = `/game-2/${monId}`
   }}
-  className="keepPlayingButton"
 >
   Keep Playing
 </button>
