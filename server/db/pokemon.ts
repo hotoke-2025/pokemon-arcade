@@ -53,3 +53,11 @@ export async function getUserById(id: string) {
 export async function createUser(user: { id: string }) {
   await db('users').insert(user)
 }
+
+export async function updateNickname(id: number, nickname: string, user_id: string) {
+  return db('caught_pokemon')
+    .where({ id, user_id })
+    .update({ nickname })
+}
+
+
