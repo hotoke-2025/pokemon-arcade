@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
-
+import confetti from 'canvas-confetti'
 
 export default function CaughtPokemon() {
   const { monId } = useParams()
@@ -24,6 +24,15 @@ export default function CaughtPokemon() {
     return <span>Error: {error.message}</span>
   }
 
+  if (pokemon) {
+  confetti({
+    particleCount: 70,
+    spread: 100,
+    origin: { y: 0.6 },
+    colors: ['#a864fd', '#29cdff', '#78ff44', '#ee73c4', '#fdff6a'],
+  })
+}
+
   return (
      <>
       <h1 className="bg-transparent text-center text-2xl mt-5">
@@ -39,7 +48,7 @@ export default function CaughtPokemon() {
     const monId = Math.floor(Math.random() * 1025) + 1
     window.location.href = `/game-2/${monId}`
   }}
-  className="bg-white border border-black rounded-full px-4 py-2 text-sm mx-auto block w-fit"
+  className="keepPlayingButton"
 >
   Keep Playing
 </button>
