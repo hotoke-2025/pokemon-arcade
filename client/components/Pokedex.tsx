@@ -59,17 +59,20 @@ export default function Pokedex() {
   return (
     <div>
       <h1 className="text-center">Who&apos;s that Pokemon Pokedex</h1>
-      <table id="table">
+      <table>
         <thead>
           <tr>
             <td>
-              <strong>ID</strong>
+              <strong>Catch ID</strong>
             </td>
             <td>
-              <strong>Name</strong>
+              <strong>Pokemon</strong>
             </td>
             <td>
               <strong>Nickname</strong>
+            </td>
+            <td>
+              <strong>Release Pokemon</strong>
             </td>
           </tr>
         </thead>
@@ -77,11 +80,11 @@ export default function Pokedex() {
           {' '}
             {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
               <tr key={pokemon.id}>
-                <td>{pokemon.id}</td>
-                <td>{pokemon.name}</td>
+                <td>#{pokemon.id}</td>
                 <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
                 <td>
                   <input
+                  className="nickname"
                     type="text"
                     defaultValue={pokemon.nickname}
                     onChange={(e) =>
@@ -89,13 +92,13 @@ export default function Pokedex() {
                     }
                   />
                   <button 
-                    className=" bg-white" onClick={() => handleNicknameSave(pokemon.id)}>
+                    className="saveBtn" onClick={() => handleNicknameSave(pokemon.id)}>
                     Save
                   </button>
                 </td>
                 <td>
                   <button
-                    className=" bg-white "
+                    className="delBtn"
                     onClick={() => handleDelete(pokemon.id)}
                   >
                     Release {pokemon.name}
