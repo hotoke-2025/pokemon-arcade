@@ -18,6 +18,7 @@ export interface AddPokedexInput {
   nickname: string
   released: boolean
   user_id?: number
+  image: string
 }
 
 export async function addPokedex(pokemon: AddPokedexInput, token: string) {

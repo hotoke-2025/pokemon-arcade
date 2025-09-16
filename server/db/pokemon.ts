@@ -25,6 +25,7 @@ export async function addPokemon(pokemon: {name: string
   nickname: string
   released: boolean
   user_id: string
+  image?: string
 }) {
   const [id] = await db('caught_pokemon').insert(pokemon)
   return id

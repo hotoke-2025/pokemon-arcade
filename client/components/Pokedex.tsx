@@ -32,10 +32,10 @@ export default function Pokedex() {
           </thead>
           <tbody>
             {' '}
-            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string }) => (
+            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
               <tr key={pokemon.id}>
                 <td>{pokemon.id}</td>
-                <td>{pokemon.name}</td>
+                <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
                 <td>{pokemon.nickname}</td>
                 <td>
                   <button className=" bg-white " onClick={() => handleDelete(pokemon.id)}>
