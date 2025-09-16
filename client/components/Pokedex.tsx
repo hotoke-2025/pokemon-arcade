@@ -20,7 +20,11 @@ export default function Pokedex() {
 
   const updateNicknameMutation = useMutation({
     mutationFn: async ({ id, nickname }: { id: number; nickname: string }) => {
-      const token = await getAccessTokenSilently()
+      const token = await getAccessTokenSilently({
+            authorizationParams: {
+              audience: 'https://pokemon-arcade/api',
+            },
+          })
       return updateNickname(id, nickname, token)
     },
     onSuccess: () => {
@@ -50,6 +54,7 @@ export default function Pokedex() {
   }
   if (isLoadingProperties) return <p>Loading...</p>
   if (isErrorProperties) return <p>Error: {(error as Error).message}</p>
+  console.log('Pokedex data:', pokemons)
 
   return (
     <div>
@@ -70,11 +75,11 @@ export default function Pokedex() {
         </thead>
         <tbody>
           {' '}
-          {pokemons?.map(
-            (pokemon: { id: number; name: string; nickname?: string }) => (
+            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
               <tr key={pokemon.id}>
                 <td>{pokemon.id}</td>
                 <td>{pokemon.name}</td>
+                <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
                 <td>
                   <input
                     type="text"
