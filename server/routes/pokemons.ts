@@ -35,6 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// deletes pokemon from pokedex
 router.delete('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
@@ -44,6 +45,7 @@ router.delete('/:id', async (req, res) => {
     console.log(e)
   }
 })
+// adds pokemon to pokedex
 
 router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
   if (!req.auth?.sub) {
@@ -77,6 +79,7 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
 //   }
 // })
 
+// auth0 pokedex
 router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   if (!req.auth?.sub) {
     res.sendStatus(StatusCodes.UNAUTHORIZED)
@@ -88,6 +91,7 @@ router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   res.json({ pokemons })
 })
 
+// updating nicknames
 router.patch('/:id', checkJwt, async (req: JwtRequest, res) => {
   if (!req.auth?.sub) {
     return res.sendStatus(StatusCodes.UNAUTHORIZED)
