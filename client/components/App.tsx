@@ -2,6 +2,7 @@ import { Outlet, Link } from 'react-router'
 import NavPokemon from './NavPokemon'
 import AuthButton from './AuthButton.tsx';
 import Audio from './Audio'
+import CaughtPokemonGallery from './HomePageMons.tsx';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <NavPokemon />
         </h3>
         <main>
+          <CaughtPokemonGallery userId={1} />
           {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
         </main>
