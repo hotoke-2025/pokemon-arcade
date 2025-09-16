@@ -5,16 +5,20 @@
 // Have a health bar that goes down by a quarter with each click of the "fight" button before the explosion gif and "you won" message appears.
 
 import { Link } from 'react-router'
-import { fetchPokemonById } from '../apis/pokemon'
 import { useParams } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Explosion } from './Explosion.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { fetchPokemonById, addPokedex, AddPokedexInput, CaughtPokemon } from '../apis/pokemon'
+
 
 export default function ShowPokemon() {
   const { monId } = useParams()
   const [showExplosion, setShowExplosion] = useState(false)
   const [health, setHealth] = useState(100)
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const queryClient = useQueryClient()
 
   const {
     data: pokemon,
@@ -26,6 +30,16 @@ export default function ShowPokemon() {
     queryFn: () => fetchPokemonById(Number(monId)),
   })
 
+   const addPokemonMutation = useMutation< CaughtPokemon, Error, AddPokedexInput & { token: string }>({
+  mutationFn: ({ token, ...pokemon }) => addPokedex(pokemon, token),
+  onSuccess: () => {
+    queryClient.invalidateQueries({queryKey: ['pokedex']})
+  },
+  onError: (error: Error) => {
+    console.log(error.message || 'Failed to add pokemon')
+  },
+})
+
   if (isPending) {
     return <>Loading...</>
   }
@@ -34,14 +48,26 @@ export default function ShowPokemon() {
     return <span>Error: {error.message}</span>
   }
 
-  function handleFight() {
+  const handleFight= async () => {
     if (health > 25) {
       setHealth(health - 25)
     } else {
       setHealth(0)
       setShowExplosion(true)
+      if (isAuthenticated){
+        try {
+          const token = await getAccessTokenSilently()
+          await addPokemonMutation.mutateAsync({
+          name: pokemon.name,
+          nickname: '',
+          released: false,
+          token,
+        })
+      } catch (error){
+        console.error('Failed to add pokemon:', error)
+      }
     }
-  }
+  }}
 
   return (
     <>
