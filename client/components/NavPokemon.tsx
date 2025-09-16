@@ -5,7 +5,6 @@ export default function Navbar() {
   
   return (
     <>
-
       
     <nav>
       <NavLink className="navButtons" to="/">
