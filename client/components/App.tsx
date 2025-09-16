@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router'
+import { Outlet, Link } from 'react-router'
 import NavPokemon from './NavPokemon'
 import AuthButton from './AuthButton.tsx';
 import Audio from './Audio'
@@ -13,12 +13,15 @@ function App() {
         </div>
         <div className= "AuthButton"> <AuthButton></AuthButton></div>
         <h1>
+          <Link to="/">
           <img
             src="/images/pokemonarcadelogo.png"
             alt="pokemon arcade"
             className="mx-auto h-auto max-w-md"
-          ></img>
+          />
+          </Link>
         </h1>
+        
         <h3 className="links" id="pixelify-sans">
           <NavPokemon />
         </h3>

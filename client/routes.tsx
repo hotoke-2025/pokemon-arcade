@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router'
 
+
 import App from './components/App'
 import ShowPokemon from './components/ShowPokemon'
 import Game1 from './components/Game1'
@@ -27,6 +28,7 @@ export const routes = createRoutesFromElements(
     <Route path="/game-1/:monId" element={<BattleScene />} />
   </Route>,
 )
+
 
 export const router = createBrowserRouter(routes)
 
