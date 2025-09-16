@@ -51,6 +51,13 @@ export default function Pokedex() {
   if (isLoadingProperties) return <p>Loading...</p>
   if (isErrorProperties) return <p>Error: {(error as Error).message}</p>
 
+  if (pokemons) {
+    pokemons.forEach((p) => {
+      console.log('Pokemon image:', p.image)
+      console.log('Image being sent:', pokemon.sprites.front_default)
+    })
+  }
+
   return (
     <div>
       <h1 className="text-center">Who&apos;s that Pokemon Pokedex</h1>
@@ -70,11 +77,11 @@ export default function Pokedex() {
         </thead>
         <tbody>
           {' '}
-          {pokemons?.map(
-            (pokemon: { id: number; name: string; nickname?: string }) => (
+            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
               <tr key={pokemon.id}>
                 <td>{pokemon.id}</td>
                 <td>{pokemon.name}</td>
+                <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
                 <td>
                   <input
                     type="text"

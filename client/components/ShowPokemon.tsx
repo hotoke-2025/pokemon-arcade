@@ -55,6 +55,7 @@ export default function ShowPokemon() {
           nickname: '',     // Need to add an input for setting nickname
           released: false,
           token,
+          image: pokemon.sprites.front_default,
         })
       } catch (error){
         console.error('Failed to add pokemon:', error)

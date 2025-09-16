@@ -62,6 +62,7 @@ export default function ShowPokemon() {
           nickname: '',
           released: false,
           token,
+          image: pokemon.sprites.front_default,
         })
       } catch (error){
         console.error('Failed to add pokemon:', error)

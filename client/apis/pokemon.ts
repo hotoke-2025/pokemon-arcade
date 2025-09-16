@@ -11,13 +11,15 @@ export interface CaughtPokemon {
   name: string
   nickname: string
   released: boolean
-  user_id?: number
+  user_id?: string
+  image: string
 }
 export interface AddPokedexInput {
   name: string
   nickname: string
   released: boolean
   user_id?: number
+  image?: string
 }
 
 export async function addPokedex(pokemon: AddPokedexInput, token: string) {

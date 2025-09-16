@@ -8,6 +8,7 @@ export function up(knex) {
     table.string('name')
     table.string('nickname')
     table.boolean('released')
+    table.string('image')
     table.string('user_id').references('users.id')
   })
 }

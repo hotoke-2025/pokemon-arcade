@@ -53,8 +53,8 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
   try {
     const user_id = req.auth.sub
     await db.syncUser(user_id)
-    const { name, nickname, released } = req.body
-    const id = await db.addPokemon({ name, nickname, released, user_id })
+     const { name, nickname, released, image } = req.body
+    const id = await db.addPokemon({ name, nickname, released, user_id, image })
     res
       .setHeader('Location', `${req.baseUrl}/${id}`)
       .sendStatus(StatusCodes.CREATED)
