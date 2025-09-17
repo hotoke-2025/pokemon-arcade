@@ -129,9 +129,9 @@ export default function Game3() {
         </tbody>
       </table>
 
-      <h2 className="m-5">{statusText}</h2>
-      <button onClick={restartGame} className="mb-5">
-        Restart Game
+      <h4 className="m-5">{statusText}</h4>
+      <button onClick={restartGame} className="keepPlayingButton">
+      Start Again
       </button>
     </div>
   )
