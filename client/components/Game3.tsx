@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Game3() {
+
   // Similar variables to the original code
+
   const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -14,64 +16,94 @@ export default function Game3() {
   ]
 
   const [options, setOptions] = useState(Array(9).fill(''))
-  const [currentPlayer, setCurrentPlayer] = useState('X')
-  const [statusText, setStatusText] = useState("X's turn")
+  const [currentPlayer, setCurrentPlayer] = useState<'X' | 'O'>('X')
+  const [statusText, setStatusText] = useState("Your turn!")
   const [running, setRunning] = useState(true)
 
   function handleCellClick(index: number) {
-    if (options[index] !== '' || !running) return
+    if (options[index] !== '' || !running || currentPlayer !== 'X') return
 
     const updatedOptions = [...options]
-    updatedOptions[index] = currentPlayer
+    updatedOptions[index] = 'X'
     setOptions(updatedOptions)
 
     checkWinner(updatedOptions)
   }
 
   function changePlayer() {
-    const nextPlayer = currentPlayer === 'X' ? 'O' : 'X'
-    setCurrentPlayer(nextPlayer)
-    setStatusText(`${nextPlayer}'s turn`)
-  }
+  const nextPlayer = currentPlayer === 'X' ? 'O' : 'X'
+  setCurrentPlayer(nextPlayer)
+
+  const nextStatus = nextPlayer === 'X' ? "Your turn!" : "Computer's turn!"
+  setStatusText(nextStatus)
+}
 
   function checkWinner(currentOptions: string[]) {
-    let roundWon = false
-    for (let i = 0; i < winConditions.length; i++) {
-      const [a, b, c] = winConditions[i]
-      const cellA = currentOptions[a]
-      const cellB = currentOptions[b]
-      const cellC = currentOptions[c]
+  let roundWon = false
+  for (let i = 0; i < winConditions.length; i++) {
+    const [a, b, c] = winConditions[i]
+    const cellA = currentOptions[a]
+    const cellB = currentOptions[b]
+    const cellC = currentOptions[c]
 
-      if (cellA === '' || cellB === '' || cellC === '') continue
+    if (cellA === '' || cellB === '' || cellC === '') continue
 
-      if (cellA === cellB && cellB === cellC) {
-        roundWon = true
-        break
-      }
+    if (cellA === cellB && cellB === cellC) {
+      roundWon = true
+      break
     }
+  }
 
-    if (roundWon) {
-      setStatusText(`${currentPlayer} won!`)
-      setRunning(false)
-    } else if (!currentOptions.includes('')) {
-      setStatusText('Draw')
-      setRunning(false)
+  if (roundWon) {
+    if (currentPlayer === 'X') {
+      setStatusText('You win!')
     } else {
-      changePlayer()
+      setStatusText('You lose!')
     }
+    setRunning(false)
+  } else if (!currentOptions.includes('')) {
+    setStatusText('Draw')
+    setRunning(false)
+  } else {
+    changePlayer()
+  }
+}
+
+  useEffect(() => {
+  if (currentPlayer === 'O' && running) {
+    const timeout = setTimeout(() => {
+      makeComputerMove()
+    }, 2000)
+    return () => clearTimeout(timeout)
+  }
+}, [currentPlayer, running])
+
+  function makeComputerMove() {
+    const emptyIndices = options
+      .map((val, idx) => (val === '' ? idx : null))
+      .filter((val) => val !== null) as number[]
+
+    if (emptyIndices.length === 0) return
+
+    const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)]
+    const updatedOptions = [...options]
+    updatedOptions[randomIndex] = 'O'
+    setOptions(updatedOptions)
+
+    checkWinner(updatedOptions)
   }
 
   function restartGame() {
     setOptions(Array(9).fill(''))
     setCurrentPlayer('X')
-    setStatusText("X's turn")
+    setStatusText("Your turn!")
     setRunning(true)
   }
 
   return (
     <div className="text-center">
       <h2 className="m-5">Tic-Tac-Johto</h2>
-      <table className= "mx-auto">
+      <table className="mx-auto">
         <tbody>
           {[0, 1, 2].map((row) => (
             <tr key={row}>
@@ -81,19 +113,13 @@ export default function Game3() {
                   <td
                     key={index}
                     onClick={() => handleCellClick(index)}
-                    className='border-2 border-black w-32 h-32'
+                    className="border-2 border-black w-32 h-32"
                   >
                     {options[index] === 'X' && (
-                      <img
-                        src="/images/X-Unown.webp"
-                        alt="X"
-                      />
+                      <img src="/images/X-Unown.webp" alt="X" />
                     )}
                     {options[index] === 'O' && (
-                      <img
-                        src="/images/O-Unown.webp"
-                        alt="O"
-                      />
+                      <img src="/images/O-Unown.webp" alt="O" />
                     )}
                   </td>
                 )
@@ -103,8 +129,10 @@ export default function Game3() {
         </tbody>
       </table>
 
-      <h2 className="m-5" >{statusText}</h2>
-      <button onClick={restartGame} className="mb-5">Restart Game</button>
+      <h2 className="m-5">{statusText}</h2>
+      <button onClick={restartGame} className="mb-5">
+        Restart Game
+      </button>
     </div>
   )
 }
