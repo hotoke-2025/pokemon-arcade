@@ -37,3 +37,9 @@ export async function updateNickname(id: number, nickname: string, token: string
     .set('Authorization', `Bearer ${token}`)
     .send({ nickname })
 }
+
+// Fetch all caught Pokémon for a user
+export async function fetchCaughtPokemon(userId: number): Promise<Pokemon[]> {
+  const res = await request.get(`${rootURL}/${userId}`)
+  return res.body as Pokemon[]
+}
