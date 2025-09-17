@@ -101,7 +101,11 @@ export default function ShowPokemon() {
       </div>
       <div className="battle-text buttonBorder">
         <h1>What will you do?</h1>
-        <button id="fightBtn" className="m-5 p-9" onClick={handleFight}>
+        <button
+          id="fightBtn"
+          className="fightButton actionButton m-5 p-9"
+          onClick={handleFight}
+        >
           {' '}
           Fight!
         </button>

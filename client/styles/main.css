@@ -44,7 +44,7 @@ audio::-webkit-media-controls-panel {
   font-size: small;
   font-style: normal;
 }
-@media only screen and (max-width: 480pxx) {
+@media only screen and (max-width: 480px) {
   button {
     width: 80%;
   }
