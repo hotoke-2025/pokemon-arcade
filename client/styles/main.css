@@ -91,6 +91,7 @@ h2 {
 h4 {
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 25px;
+  text-align: center;
   border-style: double;
   border: 3px solid #1c1c1c;
   border-radius: 8px;
