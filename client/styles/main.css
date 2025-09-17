@@ -45,11 +45,13 @@ audio::-webkit-media-controls-panel {
   font-size: small;
   font-style: normal;
 }
-@media only screen and (max-width: 480pxx) {
-  button {
-    width: 80%;
+/* @media (max-width: 480px) { */
+  .navButtons, button {
+    padding: 10px 12px;
+    margin: 5px;
+    min-height: 44px;
   }
-}
+
 
 img {
   width: 100%;
@@ -383,3 +385,5 @@ th, td {
 .saveBtn:hover {  
   background: #ffef00;
 }
+
+
