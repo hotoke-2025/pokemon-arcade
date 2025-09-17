@@ -31,9 +31,10 @@ function App() {
           </Link>
         </h1>
 
-        <h3 className="links" id="pixelify-sans">
+        <h2 className="links" id="pixelify-sans">
+      
           <NavPokemon />
-        </h3>
+        </h2>
         <main>
           <Outlet />
         </main>
