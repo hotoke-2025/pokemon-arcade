@@ -11,7 +11,7 @@ export function Explosion() {
           Go back{' '}
         </Link>
       </button> */}
-      <div>
+      <div className="explosion-container">
         <h1>You Win!</h1>
         <img src="../images/explosion-boom.gif" alt="explosion"></img>
       </div>

@@ -84,14 +84,16 @@ export default function ShowPokemon() {
         A wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '}
         has appeared...
       </h1>
+
       <div className="pokemon-container">
-        {showExplosion && <Explosion />}
         <div>
           <img
             className=""
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
+            
           />
+          {showExplosion && <Explosion />}
         </div>
 
         <div className="health-bar">
