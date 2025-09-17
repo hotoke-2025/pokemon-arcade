@@ -1,9 +1,3 @@
-// To do:
-// Display whole background image
-// Move pokemon sprite to the top right of the background image
-// Text and buttons to display over the background image and in pixelly font
-// Have a health bar that goes down by a quarter with each click of the "fight" button before the explosion gif and "you won" message appears.
-
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 import { useState } from 'react'
@@ -91,13 +85,12 @@ export default function ShowPokemon() {
         has appeared...
       </h1>
 
-      <div className="pokemon-container">
+      <div className="pokemon-container pokemon-container-bg">
         <div>
           <img
             className=""
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
-            
           />
           {showExplosion && <Explosion />}
         </div>

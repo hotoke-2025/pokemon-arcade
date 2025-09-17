@@ -134,8 +134,12 @@ h4 {
   margin: auto;
   margin-top: 50px;
   padding: 50px;
-  background-image: url(/images/CatchPokemonBackground.png);
+  /* background-image: url(/images/CatchPokemonBackground.png); */
   background-repeat: no-repeat;
+}
+
+.pokemon-container-bg {
+  background-image: url(/images/CatchPokemonBackground.png);
 }
 
 .battle-container {

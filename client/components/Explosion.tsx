@@ -11,7 +11,7 @@ export function Explosion() {
           Go back{' '}
         </Link>
       </button> */}
-      <div className="explosion-container">
+      <div className="pokemon-container">
         <h1>You Win!</h1>
         <img src="../images/explosion-boom.gif" alt="explosion"></img>
       </div>
