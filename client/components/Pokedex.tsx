@@ -39,20 +39,20 @@ export default function Pokedex() {
     setNicknameEdits((prev) => ({ ...prev, [id]: value }))
   }
 
-  const handleNicknameSave = (id: number) => {
-    const nickname = nicknameEdits[id]
+  const handleNicknameSave = (pokemon: { id: number; name: string }) => {
+    const nickname = nicknameEdits[pokemon.id]
     if (!nickname) return
-    updateNicknameMutation.mutate({ id, nickname })
-    alert('Nickname successfully saved')
+    updateNicknameMutation.mutate({id: pokemon.id, nickname })
+    alert(`${nickname || pokemon.name } successfully saved`)
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (pokemon: { id: number; name: string }) => {
     try {
-      await deletePokemon.mutateAsync(id)
-      alert('Pokemon released')
+      await deletePokemon.mutateAsync(pokemon.id)
+    alert(`${pokemon.name || 'Pokemon'} has been set free!`)
     } catch (error) {
       console.log(error)
-      alert('Pokemon not released')
+      alert(` Error! ${pokemon.name || 'Pokemon'} has not been released!`)
     }
   }
   if (isLoadingProperties) return <p>Loading...</p>
@@ -108,7 +108,7 @@ export default function Pokedex() {
                   />
                   <button
                     className="saveBtn"
-                    onClick={() => handleNicknameSave(pokemon.id)}
+                    onClick={() => handleNicknameSave(pokemon)}
                   >
                     Save
                   </button>
@@ -116,7 +116,7 @@ export default function Pokedex() {
                 <td>
                   <button
                     className="delBtn"
-                    onClick={() => handleDelete(pokemon.id)}
+                    onClick={() => handleDelete(pokemon)}
                   >
                     Release {pokemon.name}
                   </button>
