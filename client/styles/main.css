@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body {
   height: 100%;
@@ -20,19 +19,6 @@ audio::-webkit-media-controls-panel {
   background-color: #fbcb2a !important;
 }
 
-#backBtn {
-  /* background-color: white; */
-  /* colour of button background */
-  /* border: 1px solid #000000; */
-  /* border = blue outline of button */
-  /* border-radius: 50px; */
-  /* border radius = rounded edges */
-  /* font-size: 15px; */
-  /* transition: background-color 0.3 ease; */
-  /* margin: 400px; */
-  /* padding: 10px 10px; */
-}
-
 .AuthButton {
   position: absolute;
   right: 5px;
@@ -44,11 +30,6 @@ audio::-webkit-media-controls-panel {
   font-weight: 400;
   font-size: small;
   font-style: normal;
-}
-@media only screen and (max-width: 480pxx) {
-  button {
-    width: 80%;
-  }
 }
 
 img {
@@ -381,4 +362,50 @@ th, td {
 }
 .saveBtn:hover {  
   background: #ffef00;
+}
+
+@media (max-width: 430px) {
+  .pokemon-container,
+  .battle-container,
+  .wtp-container,
+  .caught-container,
+  .fled-container {
+    padding: 15px;
+    margin-top: 20px;
+    max-width: 100%;
+  }
+
+  .battle-sprite {
+    width: 100px;
+    top: -30px;
+    right: -100px;
+  }
+
+  .nickname,
+  .saveBtn,
+  .delBtn {
+    width: 100%;
+  }
+
+  table {
+    font-size: 12px;
+    overflow-x: auto;
+    display: block;
+  }
+
+  th, td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sprite-and-text {
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
