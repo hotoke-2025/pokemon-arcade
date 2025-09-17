@@ -21,10 +21,10 @@ export default function Pokedex() {
   const updateNicknameMutation = useMutation({
     mutationFn: async ({ id, nickname }: { id: number; nickname: string }) => {
       const token = await getAccessTokenSilently({
-            authorizationParams: {
-              audience: 'https://pokemon-arcade/api',
-            },
-          })
+        authorizationParams: {
+          audience: 'https://pokemon-arcade/api',
+        },
+      })
       return updateNickname(id, nickname, token)
     },
     onSuccess: () => {
@@ -39,17 +39,20 @@ export default function Pokedex() {
     setNicknameEdits((prev) => ({ ...prev, [id]: value }))
   }
 
-  const handleNicknameSave = (id: number) => {
-    const nickname = nicknameEdits[id]
+  const handleNicknameSave = (pokemon: { id: number; name: string }) => {
+    const nickname = nicknameEdits[pokemon.id]
     if (!nickname) return
-    updateNicknameMutation.mutate({ id, nickname })
+    updateNicknameMutation.mutate({id: pokemon.id, nickname })
+    alert(`${nickname || pokemon.name } successfully saved`)
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (pokemon: { id: number; name: string }) => {
     try {
-      return await deletePokemon.mutateAsync(id)
+      await deletePokemon.mutateAsync(pokemon.id)
+    alert(`${pokemon.name || 'Pokemon'} has been set free!`)
     } catch (error) {
       console.log(error)
+      alert(` Error! ${pokemon.name || 'Pokemon'} has not been released!`)
     }
   }
   if (isLoadingProperties) return <p>Loading...</p>
@@ -59,44 +62,61 @@ export default function Pokedex() {
   return (
     <div>
       <h1 className="text-center">Who&apos;s that Pokemon Pokedex</h1>
-      <table id="table">
+      <div id="custom-notification" className="notification-hidden">
+        <p id="notification-message"> </p>
+      </div>
+      <table>
         <thead>
           <tr>
             <td>
-              <strong>ID</strong>
+              <strong>Catch ID</strong>
             </td>
             <td>
-              <strong>Name</strong>
+              <strong>Pokemon</strong>
             </td>
             <td>
               <strong>Nickname</strong>
+            </td>
+            <td>
+              <strong>Release Pokemon</strong>
             </td>
           </tr>
         </thead>
         <tbody>
           {' '}
-            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
+          {pokemons?.map(
+            (pokemon: {
+              id: number
+              name: string
+              nickname?: string
+              image: string
+            }) => (
               <tr key={pokemon.id}>
-                <td>{pokemon.id}</td>
-                <td>{pokemon.name}</td>
-                <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
+                <td>#{pokemon.id}</td>
+                <td>
+                  <img src={pokemon.image} alt={pokemon.name} />
+                  {pokemon.name}
+                </td>
                 <td>
                   <input
+                    className="nickname"
                     type="text"
                     defaultValue={pokemon.nickname}
                     onChange={(e) =>
                       handleNicknameChange(pokemon.id, e.target.value)
                     }
                   />
-                  <button 
-                    className=" bg-white" onClick={() => handleNicknameSave(pokemon.id)}>
+                  <button
+                    className="saveBtn"
+                    onClick={() => handleNicknameSave(pokemon)}
+                  >
                     Save
                   </button>
                 </td>
                 <td>
                   <button
-                    className=" bg-white "
-                    onClick={() => handleDelete(pokemon.id)}
+                    className="delBtn"
+                    onClick={() => handleDelete(pokemon)}
                   >
                     Release {pokemon.name}
                   </button>

@@ -347,3 +347,38 @@ body {
   border: 3px solid #1c1c1c;
   border-radius: 8px;
 }
+
+th, td {
+  border: 2px solid;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #ffde88;
+}
+.nickname {
+  width: 90%;
+  padding: 2px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 7px;
+}
+
+.saveBtn {
+  width: 50%;
+  border: 1px solid;
+  border-radius: 7px;
+  background: #fbcb2a;
+}
+
+.delBtn {
+  width: 80%;
+  border: 1px solid;
+  border-radius: 7px;
+  background: #fbcb2a;
+}
+.delBtn:hover {
+  background: #ffef00;
+}
+.saveBtn:hover {  
+  background: #ffef00;
+}
