@@ -35,13 +35,22 @@ export default function CaughtPokemon() {
 
   return (
      <>
-      <h1 className="bg-transparent text-center text-2xl mt-5">
+      <h4>
   Gotcha!{' '}
   <span className="font-bold italic">
     {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
   </span>{' '}
-  was caught!
-</h1>
+  was caught and has been added to your Pokédex!
+</h4>
+<div className="caught-container">
+      <div className="caughtSprite">
+        <img
+        className="guessCorrectSprite"
+          src={pokemon.sprites.front_default}
+          alt={`Front Default Sprite for ${pokemon.name}`}
+        />
+      </div>
+</div>
 <br></br>
 <button
   className="keepPlayingButton"
@@ -52,13 +61,6 @@ export default function CaughtPokemon() {
 >
   Keep Playing
 </button>
-      <div className="caughtSprite">
-        <img
-        className='h-3vw'
-          src={pokemon.sprites.front_default}
-          alt={`Front Default Sprite for ${pokemon.name}`}
-        />
-      </div>
     </>
   )
 }
