@@ -98,6 +98,8 @@ export default function Pokedex() {
                   {pokemon.name}
                 </td>
                 <td>
+                  <label>
+                    Nickname:
                   <input
                     className="nickname"
                     type="text"
@@ -105,7 +107,7 @@ export default function Pokedex() {
                     onChange={(e) =>
                       handleNicknameChange(pokemon.id, e.target.value)
                     }
-                  />
+                  /></label>
                   <button
                     className="saveBtn"
                     onClick={() => handleNicknameSave(pokemon)}
