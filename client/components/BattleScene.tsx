@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 import { useState } from 'react'
-import { Explosion } from './Explosion.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
@@ -86,15 +85,23 @@ export default function ShowPokemon() {
       </h1>
 
       <div className="pokemon-container pokemon-container-bg">
-        <div>
+        <div className="pokemon-sprite-wrapper">
           <img
-            className=""
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
+            className="pokemon-sprite-img"
           />
-          {showExplosion && <Explosion />}
+          {showExplosion && (
+            <div className="explosion-overlay">
+              <img
+                src="../images/explosion-boom.gif"
+                alt="explosion"
+                className="explosion-img"
+              />
+              <h1 className="explosion-win-text">You Win!</h1>
+            </div>
+          )}
         </div>
-
         <div className="health-bar">
           <div className="health-fill" style={{ width: `${health}%` }}></div>
         </div>
@@ -106,13 +113,11 @@ export default function ShowPokemon() {
           className="fightButton actionButton m-5 p-9"
           onClick={handleFight}
         >
-          {' '}
           Fight!
         </button>
         <button>
           <Link id="backBtn" to={'/game-1'} className="actionButton runButton">
-            {' '}
-            Run Away{' '}
+            Run Away
           </Link>
         </button>
       </div>
