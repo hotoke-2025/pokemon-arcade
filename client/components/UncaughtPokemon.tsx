@@ -26,14 +26,23 @@ export default function CaughtPokemon() {
   return (
      <>
      <br></br>
-      <h1 className="bg-transparent text-center text-2xl mt-5">
+      <h4>
   Oh no, not quite! The wild{' '}
   <span className="font-bold italic">
     {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
   </span>{' '}
   has fled!
-</h1>
-<br></br>
+</h4>
+      <div className="fled-container">
+        <div className="uncaughtSprite">
+          <img
+          className="guessWrongSprite"
+            src={pokemon.sprites.front_default}
+            alt={`Front Default Sprite for ${pokemon.name}`}
+          />
+        </div>
+      </div>
+      <br></br>
 <button
   className="keepPlayingButton"
   onClick={() => {
@@ -43,17 +52,6 @@ export default function CaughtPokemon() {
 >
   Keep Playing
 </button>
-<br></br>
-<br></br>
-      <div className='uncaughtSpriteBackground'>
-        <div className="uncaughtSprite">
-          <img
-          className='h-3vw'
-            src={pokemon.sprites.front_default}
-            alt={`Front Default Sprite for ${pokemon.name}`}
-          />
-        </div>
-      </div>
     </>
   )
 }

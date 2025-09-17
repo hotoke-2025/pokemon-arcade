@@ -66,8 +66,7 @@ img {
 
 p {
   font-size: 1.252rem;
-  color: #003f8b;
-  text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  color: black;
   text-align: center;
 }
 
@@ -87,6 +86,19 @@ h2 {
   color: #003f8b;
   text-shadow: 2px 2px 4px rgb(255, 255, 255);
   text-align: center;
+}
+
+h4 {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 25px;
+  border-style: double;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 10px 10px;
+  margin: 10px auto;
+  display: block;
+  background-color: white;
+  color: #1c1c1c;
 }
 
 .links {
@@ -178,7 +190,17 @@ h2 {
 
 .pokemonSprites {
   filter: brightness(0%);
-  margin-left: -80px;
+  margin-left: -90px;
+}
+
+.guessCorrectSprite {
+  filter: brightness(100%);
+  margin-left: -90px;
+}
+
+.guessWrongSprite {
+  filter: brightness(100%);
+  margin-left: -90px;
 }
 
 body {
@@ -214,7 +236,7 @@ body {
   max-width: 500px;
   margin: auto;
   padding: 10px;
-  filter: brightness(50%);
+  filter: brightness(100%);
 }
 
 .uncaughtSpriteBackground {
@@ -224,51 +246,58 @@ body {
   background-position-x: center;
 }
 
-.appearedText {
-  border: 2px solid black;
-  border-radius: 8px;
-}
-
 .submitButton {
-  border: 2px solid #3b4cca;
-  border-radius: 5px;
-  padding: 5px;
-  width: auto;
-  height: auto;
-  margin: 10px auto;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 20px;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 10px 10px;
+  margin: 20px auto;
   display: block;
+  background-color: white;
+  color: #1c1c1c;
 }
 
 .submitButton:hover {
-  background-color: #ffde00;
+  background-color: #90e0ef;
+  color: #1c1c1c;
+  border-color: #1c1c1c;
 }
 
 .skipButton {
-  border: 2px solid #3b4cca;
-  border-radius: 5px;
-  padding: 5px;
-  width: auto;
-  height: auto;
-  margin: 10px auto;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 20px;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 10px 10px;
+  margin: 20px auto;
   display: block;
+  background-color: white;
+  color: #1c1c1c;
 }
 
 .skipButton:hover {
-  background-color: #ffde00;
+  background-color: #90e0ef;
+  color: #1c1c1c;
+  border-color: #1c1c1c;
 }
 
 .keepPlayingButton {
-  border: 2px solid #3b4cca;
-  border-radius: 5px;
-  padding: 5px;
-  width: auto;
-  height: auto;
-  margin: 10px auto;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 20px;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 10px 10px;
+  margin: 20px auto;
   display: block;
+  background-color: white;
+  color: #1c1c1c;
 }
 
 .keepPlayingButton:hover {
-  background-color: #ffde00;
+  background-color: #90e0ef;
+  color: #1c1c1c;
+  border-color: #1c1c1c;
 }
 
 .wtp-container {
@@ -283,4 +312,38 @@ body {
   background-size: cover;   
   background-repeat: no-repeat;
   background-position: center;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+}
+
+.caught-container {
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url(/images/stars.png);
+  background-size: cover;   
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
+}
+
+.fled-container {
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url(/images/flee.png);
+  background-size: cover;   
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 3px solid #1c1c1c;
+  border-radius: 8px;
 }
