@@ -35,8 +35,6 @@ function App() {
           <NavPokemon />
         </h3>
         <main>
-
-          {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
         </main>
         <footer className="text-center">
@@ -53,12 +51,4 @@ function App() {
   )
 }
 
-//       <Routes>
-//         <Route path="/home" element={<Home />} />
-//         <Route path="/game-1" element={<Game1 />} />
-//         {/* other routes */}
-//       </Routes>
-//     </div>
-//   );
-// }
 export default App
