@@ -69,7 +69,7 @@ export default function ShowPokemon() {
   return (
     <>
     <br></br>
-      <p>A wild Pokémon has appeared!</p>
+      <h4>A wild Pokémon has appeared...</h4>
       <div className="wtp-container">
         <div className="sprite-and-text">
           <img
@@ -81,7 +81,7 @@ export default function ShowPokemon() {
       </div>
       <br></br>
       <div className="text-center">
-        <p>Quick! Guess correctly to catch it! </p>
+        <h4>Quick! Guess correctly to catch it! </h4>
         <br></br>
         <input
           className="text-center rounded-2xl p-1"
