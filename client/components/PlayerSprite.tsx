@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react'
 
-// Standing 
+// Standing
 import spriteDown from '/images/player-sprite-standing-facing-towards.png'
 import spriteUp from '/images/player-sprite-standing-facing-away.png'
 import spriteLeft from '/images/player-sprite-standing-facing-left.png'
 import spriteRight from '/images/player-sprite-standing-facing-right.png'
 
-// Walking 
-import spriteDownLeft from '/images/player-down-walk1.png' 
-import spriteDownRight from '/images/player-down-walk2.png' 
-import spriteUpLeft from '/images/player-up-walk1.png'  
-import spriteUpRight from '/images/player-up-walk2.png' 
+// Walking
+import spriteDownLeft from '/images/player-down-walk1.png'
+import spriteDownRight from '/images/player-down-walk2.png'
+import spriteUpLeft from '/images/player-up-walk1.png'
+import spriteUpRight from '/images/player-up-walk2.png'
 import spriteLeftLeft from '/images/player-left-walk1.png'
-import spriteLeftRight from '/images/player-left-walk2.png' 
-import spriteRightLeft from '/images/player-right-walk1.png' 
-import spriteRightRight from '/images/player-right-walk2.png' 
+import spriteLeftRight from '/images/player-left-walk2.png'
+import spriteRightLeft from '/images/player-right-walk1.png'
+import spriteRightRight from '/images/player-right-walk2.png'
 
 const sprites = {
   up: {
@@ -38,7 +38,6 @@ const sprites = {
     right: spriteRightRight,
   },
 }
-
 
 // SPRINT TO DOS:
 // Add the equivalent images for female player and change sprite images based on backend "user" data
@@ -64,7 +63,9 @@ interface Props {
 // import { usePlayerSprite } from '../hooks/usePlayerSprite'
 
 function PlayerSprite({ position, setPosition, containerRef }: Props) {
-  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('down')
+  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>(
+    'down',
+  )
   const [isWalking, setIsWalking] = useState(false)
   const [activeKey, setActiveKey] = useState<string | null>(null)
 
@@ -96,10 +97,11 @@ function PlayerSprite({ position, setPosition, containerRef }: Props) {
 
     const interval = setInterval(() => {
       i++
-      setPosition((prev) => ({
-        x: prev.x + dx / steps,
-        y: prev.y + dy / steps,
-      }))
+      setPosition((prev) => {
+        const newX = Math.min(Math.max(prev.x + dx / steps, 0), maxX)
+        const newY = Math.min(Math.max(prev.y + dy / steps, 0), maxY)
+        return { x: newX, y: newY }
+      })
 
       if (i === Math.floor(steps / 2)) {
         setFrame('stand') // back to standing mid-way
@@ -109,11 +111,11 @@ function PlayerSprite({ position, setPosition, containerRef }: Props) {
         clearInterval(interval)
         setIsWalking(false)
         setFrame('stand')
-        // Alternate foot for next move
         setNextFoot((f) => (f === 'left' ? 'right' : 'left'))
       }
-    }, 40) // 60ms per substep (~16fps)
+    }, 30)
   }
+  // 60ms per substep (~16fps)
 
   // Handle keydown/keyup
   useEffect(() => {

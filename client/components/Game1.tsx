@@ -2,12 +2,6 @@ import PlayerSprite from './PlayerSprite.tsx'
 import Mons from './WildMonsGenerator.tsx'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
-// import { Link } from 'react-router'
-// import MyAudioPlayer from './Audio.tsx'
-// import { BattleScene } from './BattleScene.tsx'
-// resize step/sprite/background so that it conforms to grid
-// Clean code, add comments
-// Pull request
 
 function generateRandomMons(
   count: number,
