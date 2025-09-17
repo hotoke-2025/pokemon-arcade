@@ -1,13 +1,6 @@
-// To do:
-// Display whole background image
-// Move pokemon sprite to the top right of the background image
-// Text and buttons to display over the background image and in pixelly font
-// Have a health bar that goes down by a quarter with each click of the "fight" button before the explosion gif and "you won" message appears.
-
 import { Link } from 'react-router'
 import { useParams } from 'react-router'
 import { useState } from 'react'
-import { Explosion } from './Explosion.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
@@ -90,29 +83,44 @@ export default function ShowPokemon() {
         A wild {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}{' '}
         has appeared...
       </h1>
-      <div className="pokemon-container">
-        {/* (change this^ to pokemon-container to revert back to game2 baground) */}
-        <div>
+
+      <div className="pokemon-container pokemon-container-bg">
+        <div className="pokemon-sprite-wrapper">
           <img
-            className=""
             src={pokemon.sprites.front_default}
             alt={`Front Default Sprite for ${pokemon.name}`}
+            className="pokemon-sprite-img"
           />
+          {showExplosion && (
+            <div className="explosion-overlay">
+              <img
+                src="../images/explosion-boom.gif"
+                alt="explosion"
+                className="explosion-img"
+              />
+            </div>
+          )}
         </div>
+
+        {/* "You Win!" banner below explosion, above health bar */}
+        {showExplosion && <h1 className="explosion-win-text">You Win!</h1>}
+
         <div className="health-bar">
           <div className="health-fill" style={{ width: `${health}%` }}></div>
         </div>
       </div>
-      <div className="battle-text">
+      <div className="battle-text buttonBorder">
         <h1>What will you do?</h1>
-        <button id="fightBtn" className="m-5 p-9" onClick={handleFight}>
-          {' '}
-          Fight! {showExplosion && <Explosion />}
+        <button
+          id="fightBtn"
+          className="fightButton actionButton m-5 p-9"
+          onClick={handleFight}
+        >
+          Fight!
         </button>
         <button>
-          <Link id="backBtn" to={'/game-1'} className="m-5 p-9">
-            {' '}
-            Run Away{' '}
+          <Link id="backBtn" to={'/game-1'} className="actionButton runButton">
+            Run Away
           </Link>
         </button>
       </div>
