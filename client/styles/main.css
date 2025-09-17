@@ -464,12 +464,16 @@ td {
 }
 
 .explosion-win-text {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  border: 7px solid #3573bd;
+  border-radius: 15px;
+  margin: 24px auto 10px auto; /* top margin for separation from explosion */
+  padding: 10px;
   color: white;
+  background: transparent;
   text-shadow: 2px 2px 8px black;
   font-size: 2rem;
-  margin: 0;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  width: fit-content;
+  max-width: 90%;
 }

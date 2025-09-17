@@ -98,10 +98,13 @@ export default function ShowPokemon() {
                 alt="explosion"
                 className="explosion-img"
               />
-              <h1 className="explosion-win-text">You Win!</h1>
             </div>
           )}
         </div>
+
+        {/* "You Win!" banner below explosion, above health bar */}
+        {showExplosion && <h1 className="explosion-win-text">You Win!</h1>}
+
         <div className="health-bar">
           <div className="health-fill" style={{ width: `${health}%` }}></div>
         </div>
