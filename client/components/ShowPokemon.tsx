@@ -89,6 +89,8 @@ export default function ShowPokemon() {
       <div className="text-center">
         <h4>Quick! Guess correctly to catch it! </h4>
         <br></br>
+        <label> The pokemon is...
+          <br/>
         <input
           className="text-center rounded-2xl p-1"
           type="text"
@@ -97,6 +99,7 @@ export default function ShowPokemon() {
           value={hiddenPokemon}
           onChange={handleInputChange}
         ></input>
+        </label>
         <br/>
         <div className="flex justify-center gap-4 mt-4">
   <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>

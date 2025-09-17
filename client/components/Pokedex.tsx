@@ -65,21 +65,21 @@ export default function Pokedex() {
       <div id="custom-notification" className="notification-hidden">
         <p id="notification-message"> </p>
       </div>
-      <table>
+      <table role="presentation">
         <thead>
           <tr>
-            <td>
+            <th>
               <strong>Catch ID</strong>
-            </td>
-            <td>
+            </th>
+            <th>
               <strong>Pokemon</strong>
-            </td>
-            <td>
+            </th>
+            <th>
               <strong>Nickname</strong>
-            </td>
-            <td>
+            </th>
+            <th>
               <strong>Release Pokemon</strong>
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -94,10 +94,12 @@ export default function Pokedex() {
               <tr key={pokemon.id}>
                 <td>#{pokemon.id}</td>
                 <td>
-                  <img src={pokemon.image} alt={pokemon.name} />
+                  <img src={pokemon.image} alt={`${pokemon.name} sprite`}/>
                   {pokemon.name}
                 </td>
                 <td>
+                  <label>
+                    Nickname:
                   <input
                     className="nickname"
                     type="text"
@@ -105,7 +107,7 @@ export default function Pokedex() {
                     onChange={(e) =>
                       handleNicknameChange(pokemon.id, e.target.value)
                     }
-                  />
+                  /></label>
                   <button
                     className="saveBtn"
                     onClick={() => handleNicknameSave(pokemon)}
