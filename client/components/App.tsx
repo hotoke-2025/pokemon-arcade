@@ -21,10 +21,10 @@ function App() {
           />
           </Link>
         </h1>
-        
-        <h3 className="links" id="pixelify-sans">
+
+        <h2 className="links" id="pixelify-sans">
           <NavPokemon />
-        </h3>
+        </h2>
         <main>
           {/* <h1 className="text-3xl font-bold underline">pokemon</h1> */}
           <Outlet />
