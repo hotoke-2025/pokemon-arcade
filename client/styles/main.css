@@ -48,6 +48,7 @@ audio::-webkit-media-controls-panel {
 @media only screen and (max-width: 480px) {
   button {
     width: 80%;
+  }
     
   .navButtons, button {
     padding: 10px 12px;
