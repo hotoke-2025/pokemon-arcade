@@ -35,6 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// deletes pokemon from pokedex
 router.delete('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
@@ -44,6 +45,7 @@ router.delete('/:id', async (req, res) => {
     console.log(e)
   }
 })
+// adds pokemon to pokedex
 
 router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
   if (!req.auth?.sub) {
@@ -53,8 +55,8 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
   try {
     const user_id = req.auth.sub
     await db.syncUser(user_id)
-    const { name, nickname, released } = req.body
-    const id = await db.addPokemon({ name, nickname, released, user_id })
+    const { name, nickname, released, image } = req.body
+    const id = await db.addPokemon({ name, nickname, released, user_id, image })
     res
       .setHeader('Location', `${req.baseUrl}/${id}`)
       .sendStatus(StatusCodes.CREATED)
@@ -62,7 +64,22 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
     next(err)
   }
 })
+// // Working but not connected to auth0
+// router.post('/', async (req, res, next) => {
+//   const user_id = 'test-user-id' // fake test user for now
 
+//   try {
+//     await db.syncUser(user_id)
+//     const { name, nickname, released, image } = req.body
+//     const id = await db.addPokemon({ name, nickname, released, user_id, image })
+//     console.log('✅ Route called with image:', image)
+//     res.setHeader('Location', `${req.baseUrl}/${id}`).sendStatus(201)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// auth0 pokedex
 router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   if (!req.auth?.sub) {
     res.sendStatus(StatusCodes.UNAUTHORIZED)
@@ -74,6 +91,7 @@ router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
   res.json({ pokemons })
 })
 
+// updating nicknames
 router.patch('/:id', checkJwt, async (req: JwtRequest, res) => {
   if (!req.auth?.sub) {
     return res.sendStatus(StatusCodes.UNAUTHORIZED)

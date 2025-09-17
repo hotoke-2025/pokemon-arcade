@@ -11,13 +11,15 @@ export interface CaughtPokemon {
   name: string
   nickname: string
   released: boolean
-  user_id?: number
+  user_id?: string
+  image: string
 }
 export interface AddPokedexInput {
   name: string
   nickname: string
   released: boolean
   user_id?: number
+  image?: string
 }
 
 export async function addPokedex(pokemon: AddPokedexInput, token: string) {
@@ -34,4 +36,10 @@ export async function updateNickname(id: number, nickname: string, token: string
     .patch(`${rootURL}/pokedex/${id}`)
     .set('Authorization', `Bearer ${token}`)
     .send({ nickname })
+}
+
+// Fetch all caught Pokémon for a user
+export async function fetchCaughtPokemon(userId: number): Promise<Pokemon[]> {
+  const res = await request.get(`${rootURL}/${userId}`)
+  return res.body as Pokemon[]
 }

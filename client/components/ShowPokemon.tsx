@@ -49,12 +49,18 @@ export default function ShowPokemon() {
     if (hiddenPokemon.toUpperCase() == pokemon.name.toUpperCase()) {
       if (isAuthenticated){
         try {
-          const token = await getAccessTokenSilently()
+          const token = await getAccessTokenSilently({
+            authorizationParams: {
+              audience: 'https://pokemon-arcade/api',
+            },
+          })
+          console.log('Attempting to add pokemon', pokemon.name)
           await addPokemonMutation.mutateAsync({
           name: pokemon.name,
           nickname: '',     // Need to add an input for setting nickname
           released: false,
           token,
+          image: pokemon.sprites.front_default,
         })
       } catch (error){
         console.error('Failed to add pokemon:', error)
@@ -69,7 +75,7 @@ export default function ShowPokemon() {
   return (
     <>
     <br></br>
-      <p>A wild Pokémon has appeared!</p>
+      <h4>A wild Pokémon has appeared...</h4>
       <div className="wtp-container">
         <div className="sprite-and-text">
           <img
@@ -81,7 +87,7 @@ export default function ShowPokemon() {
       </div>
       <br></br>
       <div className="text-center">
-        <p>Quick! Guess correctly to catch it! </p>
+        <h4>Quick! Guess correctly to catch it! </h4>
         <br></br>
         <input
           className="text-center rounded-2xl p-1"
