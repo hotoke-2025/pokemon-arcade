@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import confetti from 'canvas-confetti'
 
 export default function Game3() {
 
@@ -57,6 +58,12 @@ export default function Game3() {
   if (roundWon) {
     if (currentPlayer === 'X') {
       setStatusText('You win!')
+      confetti({
+      particleCount: 70,
+      spread: 100,
+      origin: { y: 0.6 },
+      colors: ['#a864fd', '#29cdff', '#78ff44', '#ee73c4', '#fdff6a'],
+    })
     } else {
       setStatusText('You lose!')
     }
