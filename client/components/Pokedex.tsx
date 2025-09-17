@@ -21,10 +21,10 @@ export default function Pokedex() {
   const updateNicknameMutation = useMutation({
     mutationFn: async ({ id, nickname }: { id: number; nickname: string }) => {
       const token = await getAccessTokenSilently({
-            authorizationParams: {
-              audience: 'https://pokemon-arcade/api',
-            },
-          })
+        authorizationParams: {
+          audience: 'https://pokemon-arcade/api',
+        },
+      })
       return updateNickname(id, nickname, token)
     },
     onSuccess: () => {
@@ -43,13 +43,16 @@ export default function Pokedex() {
     const nickname = nicknameEdits[id]
     if (!nickname) return
     updateNicknameMutation.mutate({ id, nickname })
+    alert('Nickname successfully saved')
   }
 
   const handleDelete = async (id: number) => {
     try {
-      return await deletePokemon.mutateAsync(id)
+      await deletePokemon.mutateAsync(id)
+      alert('Pokemon released')
     } catch (error) {
       console.log(error)
+      alert('Pokemon not released')
     }
   }
   if (isLoadingProperties) return <p>Loading...</p>
@@ -59,6 +62,9 @@ export default function Pokedex() {
   return (
     <div>
       <h1 className="text-center">Who&apos;s that Pokemon Pokedex</h1>
+      <div id="custom-notification" className="notification-hidden">
+        <p id="notification-message"> </p>
+      </div>
       <table>
         <thead>
           <tr>
@@ -78,21 +84,32 @@ export default function Pokedex() {
         </thead>
         <tbody>
           {' '}
-            {pokemons?.map((pokemon: { id: number; name: string; nickname?: string; image: string }) => (
+          {pokemons?.map(
+            (pokemon: {
+              id: number
+              name: string
+              nickname?: string
+              image: string
+            }) => (
               <tr key={pokemon.id}>
                 <td>#{pokemon.id}</td>
-                <td><img src={pokemon.image} alt={pokemon.name} />{pokemon.name}</td>
+                <td>
+                  <img src={pokemon.image} alt={pokemon.name} />
+                  {pokemon.name}
+                </td>
                 <td>
                   <input
-                  className="nickname"
+                    className="nickname"
                     type="text"
                     defaultValue={pokemon.nickname}
                     onChange={(e) =>
                       handleNicknameChange(pokemon.id, e.target.value)
                     }
                   />
-                  <button 
-                    className="saveBtn" onClick={() => handleNicknameSave(pokemon.id)}>
+                  <button
+                    className="saveBtn"
+                    onClick={() => handleNicknameSave(pokemon.id)}
+                  >
                     Save
                   </button>
                 </td>
