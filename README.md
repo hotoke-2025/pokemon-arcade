@@ -1,10 +1,17 @@
-# Pokemon Aracde: Creating a pokemon-based gaming platform from a boilerplate
+# Pokémon Arcade: Creating a full-stack Pokémon-based gaming platform from a boilerplate
 
-### Welcome to our final group project for Dev Academy Aotearoa
+Welcome to our final group project for Dev Academy Aotearoa!
 
-### Installation
+## Meet the team:
+Aeron Glasgow Keene - Agile Facilitator \
+Annie Moffatt - Product Owner \
+Kaylin Chu - Gitkeeper \
+Nixon Cam - Vibes Watcher \
+Rena Gillespie - Gitkeeper
 
-#### **From the Github UI**
+## Installation
+
+### **From the Github UI**
 
 See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
 
@@ -41,10 +48,3 @@ npm run knex seed:run
 
 ```
 You can match the data in http://localhost:5173/pokedex/ to the dev.sqlite3 file to check it has worked.
-
-## Meet the team:
-Aeron Glasgow Keene - Agile Facilitator
-Annie Moffatt - Product Owner
-Kaylin Chu - Gitkeeper
-Nixon Cam - Vibes Watcher
-Rena Gillespie - Gitkeeper
