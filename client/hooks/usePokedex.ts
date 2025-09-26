@@ -4,7 +4,8 @@ import {
   useQueryClient,
   MutationFunction,
 } from '@tanstack/react-query'
-import { fetchPokemonById, addPokedex, deletePokedex } from '../apis/pokemon.ts'
+import { fetchPokemonById, addPokedex, deletePokedex, AddPokedexInput } from '../apis/pokemon.ts'
+  import { useAuth0 } from '@auth0/auth0-react';
 
 async function fetchPokedex() {
   const res = await fetch('/api/v1/pokedex')
@@ -46,7 +47,10 @@ export function usePokedexMutation<TData = unknown, TVariables = unknown>(
 }
 
 export function useAddPokemon() {
-  return usePokedexMutation(addPokedex)
+  const { token } = useAuth0()
+  return usePokedexMutation((pokemon: AddPokedexInput) => {
+    return addPokedex(pokemon, token);
+ });
 }
 
 export function useDeletePokemon() {

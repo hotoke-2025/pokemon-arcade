@@ -1,6 +1,5 @@
 import db from './connection.ts'
 import { Pokemon} from '../../models/pokemonList.ts'
-// import knex from 'knex'
 
 export async function getUsersWithPokemon() {
   const users = await db('users')

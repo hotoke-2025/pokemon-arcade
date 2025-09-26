@@ -1,14 +1,16 @@
-// connect to user table database to get ids of caught mons
-// display images of mons in the sides of homepage
-// animate images - slowly scrolling vertically or bouncing off sides of screens
-
 import { usePokedex } from '../hooks/usePokedex'
 
 interface Props {
   userId: number
 }
+  interface mon {
+  id: number,
+  image: string,
+  name: string,
+}
 
 export default function CaughtPokemonGallery({ userId }: Props) {
+  console.log(userId)
   const {
     data: pokemons,
     isLoadingProperties,
@@ -22,7 +24,7 @@ export default function CaughtPokemonGallery({ userId }: Props) {
   const caughtPokemon = pokemons
   return (
     <div className="flex flex-col items-center gap-4 p-4">
-      {caughtPokemon.map((mon) => (
+      {caughtPokemon.map((mon: mon) => (
         <div key={mon.id} className="flex flex-col items-center">
           <img
             src={mon.image}

@@ -50,29 +50,3 @@ const { user, logout, loginWithRedirect } = useAuth0()
 )}
 
 
-// export default function AuthButton() {
-//   return (
-//     <div>
-//       <IfAuthenticated>
-//         <button
-//           onClick={() => {
-//             window.location.href = '/logout';
-//           }}
-//         >
-//           Logout
-//         </button>
-//       </IfAuthenticated>
-
-//       <IfNotAuthenticated>
-//         <button
-//           onClick={() => {
-//             window.location.href = '/login';
-//           }}
-//         >
-//           Login
-//         </button>
-//       </IfNotAuthenticated>
-//     </div>
-//   );
-
-
