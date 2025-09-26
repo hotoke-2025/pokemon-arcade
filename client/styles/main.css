@@ -19,19 +19,6 @@ audio::-webkit-media-controls-panel {
   background-color: #fbcb2a !important;
 }
 
-#backBtn {
-  /* background-color: white; */
-  /* colour of button background */
-  /* border: 1px solid #000000; */
-  /* border = blue outline of button */
-  /* border-radius: 50px; */
-  /* border radius = rounded edges */
-  /* font-size: 15px; */
-  /* transition: background-color 0.3 ease; */
-  /* margin: 400px; */
-  /* padding: 10px 10px; */
-}
-
 .AuthButton {
   position: absolute;
   right: 5px;

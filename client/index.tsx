@@ -26,3 +26,24 @@ root.render(
     </QueryClientProvider>
   </Auth0Provider>,
 )
+
+// // POST BOOTCAMP STRETCHES // //
+
+// Delete unused comments and code - Aeron ✅
+// Update ReadMe - Aeron 
+// Confirm if ### Auth0 section of Readme is correct - Annie
+// Fix typescript errors - Kaylin
+// Fix the sign in and audio boxes
+// Refactor code wherever possible 
+// Pokemon arcade logo - fix size change between pages
+// Pokedex nicknames change name in pokemon column 
+// Device compatibility adjustments
+// Accessibility adjustments
+
+// Big stretch:
+
+// Auth0 - user can signup with email
+// Animate side mons - slowly scrolling vertically or bouncing off sides of screens
+// Female character - use usePlayerSprite.ts (animations, gender selection in database, screen to choose gender in signup)
+// Additional battle scene stuff
+// Smarter/faster AI ffor tic-tac-johto - Annie

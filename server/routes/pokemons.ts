@@ -64,20 +64,6 @@ router.post('/', checkJwt, async (req: JwtRequest, res, next) => {
     next(err)
   }
 })
-// // Working but not connected to auth0
-// router.post('/', async (req, res, next) => {
-//   const user_id = 'test-user-id' // fake test user for now
-
-//   try {
-//     await db.syncUser(user_id)
-//     const { name, nickname, released, image } = req.body
-//     const id = await db.addPokemon({ name, nickname, released, user_id, image })
-//     console.log('✅ Route called with image:', image)
-//     res.setHeader('Location', `${req.baseUrl}/${id}`).sendStatus(201)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
 
 // auth0 pokedex
 router.get('/mine', checkJwt, async (req: JwtRequest, res) => {
