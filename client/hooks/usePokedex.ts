@@ -47,8 +47,9 @@ export function usePokedexMutation<TData = unknown, TVariables = unknown>(
 }
 
 export function useAddPokemon() {
-  const { token } = useAuth0()
-  return usePokedexMutation((pokemon: AddPokedexInput) => {
+  const { getAccessTokenSilently } = useAuth0()
+  return usePokedexMutation(async (pokemon: AddPokedexInput) => {
+  const token = await getAccessTokenSilently()
     return addPokedex(pokemon, token);
  });
 }
