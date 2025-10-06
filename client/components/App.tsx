@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="grid min-h-screen grid-cols-12 gap-4">
       {/* Left sidebar */}
-      <aside className="col-span-2 hidden md:block">
+      <aside className="col-span-2 hidden md:block pt-10">
         <CaughtPokemonGallery userId={1} />
       </aside>
 
-      {/* Main content */}
+      {/* Header content */}
       <div className="col-span-8 mx-auto h-auto max-w-2xl">
         <div className="audio">
           <Audio />
@@ -21,20 +21,24 @@ function App() {
           {' '}
           <AuthButton></AuthButton>
         </div>
-        <h1>
-          <Link to="/">
-            <img
-              src="/images/pokemonarcadelogo.png"
-              alt="pokemon arcade"
-              className="mx-auto h-auto max-w-md"
-            />
-          </Link>
-        </h1>
 
-        <h2 className="links" id="pixelify-sans">
-      
-          <NavPokemon />
-        </h2>
+        <div className="main-content">
+          {/* Arcade Logo */}
+          <h1>
+            <Link to="/">
+              <img
+                src="/images/pokemonarcadelogo.png"
+                alt="pokemon arcade"
+                className="mx-auto h-auto max-w-md"
+              />
+            </Link>
+          </h1>
+
+          <h2 className="links" id="pixelify-sans">
+            <NavPokemon />
+          </h2>
+        </div>
+        {/* Main content */}
         <main>
           <Outlet />
         </main>
@@ -43,9 +47,8 @@ function App() {
           © There&apos;s no shaymin losing!{' '}
         </footer>
       </div>
-
       {/* Right sidebar */}
-      <aside className="col-span-2 hidden md:block">
+      <aside className="col-span-2 hidden md:block pt-10">
         <CaughtPokemonGallery userId={1} />
       </aside>
     </div>

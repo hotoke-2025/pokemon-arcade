@@ -30,10 +30,10 @@ root.render(
 // // POST BOOTCAMP STRETCHES // //
 
 // Delete unused comments and code - Aeron ✅
-// Update ReadMe - Aeron 
+// Update ReadMe - Aeron ✅
 // Confirm if ### Auth0 section of Readme is correct - Annie
 // Fix typescript errors - Kaylin
-// Fix the sign in and audio boxes
+// Fix the sign in and audio boxes - Aeron
 // Refactor code wherever possible 
 // Pokemon arcade logo - fix size change between pages
 // Pokedex nicknames change name in pokemon column 
