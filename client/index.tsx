@@ -30,9 +30,9 @@ root.render(
 // // POST BOOTCAMP STRETCHES // //
 
 // Delete unused comments and code - Aeron ✅
-// Update ReadMe - Aeron 
-// Confirm if ### Auth0 section of Readme is correct - Annie
-// Fix typescript errors - Kaylin
+// Update ReadMe - Aeron ✅
+// Confirm if ### Auth0 section of Readme is correct - Annie 
+// Fix typescript errors - Kaylin ✅
 // Fix the sign in and audio boxes
 // Refactor code wherever possible 
 // Pokemon arcade logo - fix size change between pages
